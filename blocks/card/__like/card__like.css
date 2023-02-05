@@ -1,0 +1,9 @@
+.card__like{
+  margin: 0;
+  padding: 0;
+  width: 22px;
+  height: 18px;
+  background-image: url(../../../images/corazon.svg);
+  background-repeat: no-repeat;
+  border: 0px solid transparent;
+}

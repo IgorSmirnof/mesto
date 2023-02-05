@@ -1,0 +1,24 @@
+.popup{
+margin: 0 auto;
+padding: 0;
+color: black;
+
+display:none;
+
+
+width:100%;
+min-height:100%;
+background-color: rgba(0,0,0,0.5);
+overflow:hidden;
+position:fixed;
+top:0px;
+
+
+
+}
+
+/* 
+@media (max-width: 640px) {
+  .popup{
+  }
+} */
