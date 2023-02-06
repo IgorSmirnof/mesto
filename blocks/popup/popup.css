@@ -1,20 +1,16 @@
-.popup{
-margin: 0 auto;
-padding: 0;
-color: black;
+.popup {
+  margin: 0 auto;
+  padding: 0;
+  color: black;
 
-display:none;
+  display: none;
 
-
-width:100%;
-min-height:100%;
-background-color: rgba(0,0,0,0.5);
-overflow:hidden;
-position:fixed;
-top:0px;
-
-
-
+  width: 100%;
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  position: fixed;
+  top: 0px;
 }
 
 /* 
