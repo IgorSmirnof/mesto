@@ -10,6 +10,7 @@
   
   background-size: 24px;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 @media (max-width: 640px) {
