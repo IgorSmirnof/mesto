@@ -1,4 +1,4 @@
-.header{
+.header {
   margin: 0 auto;
   padding: 0;
   margin-top: 45px;
@@ -8,15 +8,14 @@
   text-align: left;
 }
 
-
 @media (max-width: 940px) {
-  .header{
+  .header {
     max-width: 940px;
   }
 }
 
 @media (max-width: 640px) {
-  .header{
+  .header {
     max-width: 620px;
     padding-bottom: 26px;
   }

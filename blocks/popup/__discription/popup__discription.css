@@ -1,10 +1,9 @@
-.popup__discription{
+.popup__discription {
   margin: 0;
   padding: 0;
   margin-top: 24px;
-  width: 358px;
+  min-width: 358px;
   height: 27px;
-
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -13,9 +12,8 @@
   padding-bottom: 5px;
 }
 
-
 @media (max-width: 640px) {
-  .popup__discription{
-    width: 238px;
+  .popup__discription {
+    min-width: 238px;
   }
 }

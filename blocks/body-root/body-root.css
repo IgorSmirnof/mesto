@@ -3,8 +3,6 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 0;
-/* text-align: center; */
-
   background-color: #000;
   color: #fff;
   font-family: "Inter", Arial, sans-serif;
@@ -15,9 +13,8 @@
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
-
 }
 
-.body-root::-webkit-scrollbar { 
-  width: 0; 
-} 
+.body-root::-webkit-scrollbar {
+  width: 0;
+}
