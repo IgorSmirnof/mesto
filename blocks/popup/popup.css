@@ -2,14 +2,16 @@
   margin: 0 auto;
   padding: 0;
   color: black;
-
-  display: none;
-
-  width: 100%;
+  min-width: 100%;
   min-height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
   position: fixed;
   top: 0px;
-}
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
 
+  display: none;
+}

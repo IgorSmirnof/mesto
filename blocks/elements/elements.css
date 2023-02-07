@@ -12,8 +12,6 @@
 @media (max-width: 940px) {
   .elements {
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 20px;
-    column-gap: 17px;
     max-width: 581px;
   }
 }
@@ -21,7 +19,6 @@
 @media (max-width: 640px) {
   .elements {
     grid-template-columns: repeat(1, 1fr);
-    row-gap: 21px;
     max-width: 282px;
     margin-top: 36px;
   }

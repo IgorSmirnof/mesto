@@ -5,6 +5,12 @@
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
+  
+  flex-basis: auto;
+  
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media (max-width: 640px) {
