@@ -12,7 +12,7 @@
 @media (max-width: 640px) {
   .popup__button-save {
     min-width: 238px;
-    padding: 12px 0; /* edit!!! */
+    padding: 12px 0;
     font-size: 14px;
     line-height: 17px;
   }

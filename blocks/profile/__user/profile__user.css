@@ -1,12 +1,8 @@
 .profile__user {
   margin: 0;
   padding: 0;
-  /* width: 100%; */
-  /* flex-basis: 100%; */
+  
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-
-  
-  /* flex-basis: auto; */
 }

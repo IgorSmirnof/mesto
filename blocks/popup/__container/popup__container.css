@@ -8,13 +8,11 @@
   flex-direction: column;
   box-sizing: border-box;
   position: fixed;
-  
-  /* Выводим в центре */
+  /* Выводим в центр */
   left: 50%;
-  top: 50%; 
+  top: 50%;
   transform: translate(-50%, -50%);
 }
-
 
 @media (max-width: 640px) {
   .popup__container {
