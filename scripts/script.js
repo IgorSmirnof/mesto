@@ -25,8 +25,8 @@ formSend.addEventListener("submit", function (e) {
   popup.classList.remove("popup_opened");
 });
 
-elements.addEventListener("click", function (event) {
-  if (event.target.classList.contains("card__like")) {
-    event.target.classList.toggle("card__like_active");
+elements.addEventListener("click", function (e) {
+  if (e.target.classList.contains("card__like")) {
+    e.target.classList.toggle("card__like_active");
   }
 });
