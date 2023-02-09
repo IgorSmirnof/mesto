@@ -18,11 +18,13 @@
 
     <main class="main">
       <section class="profile" aria-label="Информация о пользователе.">
-        <img
-          src="./images/avatar.jpg"
-          alt="Фото пользователя."
-          class="profile__avatar"
-        />
+        <div class="profile__avatar">
+          <img
+            src="./images/avatar.jpg"
+            alt="Фото пользователя."
+            class="profile__avatar-image"
+          />
+        </div>
         <div class="profile__user">
           <div class="profile__title">
             <h1 class="profile__name">Борода aka IGo</h1>
@@ -35,11 +37,13 @@
 
       <section class="elements" aria-label="Фото мест.">
         <ul class="card">
-          <img
-            src="./images/rutas/camino-plato.jpg"
-            alt="Отметка 100км."
-            class="card__image"
-          />
+          <li class="card__image-wrapper">
+            <img
+              src="./images/rutas/camino-plato.jpg"
+              alt="Отметка 100км."
+              class="card__image"
+            />
+          </li>
           <li class="card__subtitle">
             <h2 class="card__place">El Camino de Santiago</h2>
             <button type="button" class="card__like button-grey"></button>

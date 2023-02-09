@@ -6,3 +6,11 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media (max-width: 640px) {
+  .profile__user {
+    max-width: 282px;
+  }
+}
+
+
