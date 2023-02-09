@@ -1,12 +1,14 @@
 .popup__button-save {
   margin: 0;
-  padding: 13px 0;
-  margin-top: 47px;
+  padding: 14px 0;
+  margin-top: 50px;
   min-width: 358px;
   color: white;
   background-color: black;
   font-size: 18px;
   line-height: 22px;
+  border: 0;
+  border-radius: 2px;
 }
 
 @media (max-width: 640px) {

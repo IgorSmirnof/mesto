@@ -1,7 +1,7 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/fonts.css);
 @import url(../blocks/body-root/body-root.css);
-@import url(../blocks/oscuro/oscuro.css);
+@import url(../blocks/button-grey/button-grey.css);
 
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);

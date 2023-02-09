@@ -8,16 +8,16 @@
   width: 32px;
   height: 32px;
   position: absolute;
-  margin-top: -80px;
-  margin-right: -480px;
+  top: -40px;
+  right: -40px;
   align-self: center;
   border: 0;
 }
 
 @media (max-width: 640px) {
   .popup__close {
-    margin-top: -60px;
-    margin-right: -260px;
+    top: -35px;
+    right: 0;
     width: 20px;
     height: 20px;
     background-size: 20px;

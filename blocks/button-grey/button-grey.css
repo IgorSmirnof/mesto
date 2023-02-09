@@ -1,9 +1,9 @@
-.oscuro {
+.button-grey {
   color: #fff;
   transition: opacity 0.3s ease-out;
 }
 
-.oscuro:hover {
+.button-grey:hover {
   opacity: 0.75;
   cursor: pointer;
 }

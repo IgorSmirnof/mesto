@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css" />
     <script src="./scripts/script.js" defer></script>
+    <script src="./sc.js" defer></script>
     <title>Russia Mesto</title>
   </head>
   <body class="body-root">
@@ -26,80 +27,80 @@
         <div class="profile__user">
           <div class="profile__title">
             <h1 class="profile__name">Борода aka IGo</h1>
-            <button type="button" class="profile__button-edit oscuro"></button>
+            <button type="button" class="profile__button-edit button-grey"></button>
           </div>
           <p class="profile__description">У каждого свой Путь, найди свой:</p>
         </div>
-        <button type="button" class="profile__button-add oscuro"></button>
+        <button type="button" class="profile__button-add button-grey"></button>
       </section>
 
       <section class="elements" aria-label="Фото мест.">
-        <div class="card">
+        <ul class="card">
           <img
             src="./images/rutas/camino-plato.jpg"
             alt="Отметка 100км."
             class="card__image"
           />
-          <div class="card__subtitle">
+          <li class="card__subtitle">
             <h2 class="card__place">El Camino de Santiago</h2>
-            <button type="button" class="card__like oscuro"></button>
-          </div>
-        </div>
-        <div class="card">
+            <button type="button" class="card__like button-grey"></button>
+          </li>
+        </ul>
+        <ul class="card">
           <img
             src="./images/rutas/camino-frances.jpg"
             alt="Железный крест."
             class="card__image"
           />
-          <div class="card__subtitle">
+          <li class="card__subtitle">
             <h2 class="card__place">Французский</h2>
-            <button type="button" class="card__like oscuro"></button>
-          </div>
-        </div>
-        <div class="card">
+            <button type="button" class="card__like button-grey"></button>
+          </li>
+        </ul>
+        <ul class="card">
           <img
             src="./images/rutas/camino-norte.jpg"
             alt="Побережье северного пути."
             class="card__image"
           />
-          <div class="card__subtitle">
+          <li class="card__subtitle">
             <h2 class="card__place">Северный</h2>
-            <button type="button" class="card__like oscuro"></button>
-          </div>
-        </div>
-        <div class="card">
+            <button type="button" class="card__like button-grey"></button>
+          </li>
+        </ul>
+        <ul class="card">
           <img
             src="./images/rutas/camino-fisterra.jpg"
             alt="Маяк - окончание Пути."
             class="card__image"
           />
-          <div class="card__subtitle">
+          <li class="card__subtitle">
             <h2 class="card__place">На край земли</h2>
-            <button type="button" class="card__like oscuro"></button>
-          </div>
-        </div>
-        <div class="card">
+            <button type="button" class="card__like button-grey"></button>
+          </li>
+        </ul>
+        <ul class="card">
           <img
             src="./images/rutas/camino-portugues.jpg"
             alt="Португальский маршрут."
             class="card__image"
           />
-          <div class="card__subtitle">
+          <li class="card__subtitle">
             <h2 class="card__place">Португальский</h2>
-            <button type="button" class="card__like oscuro"></button>
-          </div>
-        </div>
-        <div class="card">
+            <button type="button" class="card__like button-grey"></button>
+          </li>
+        </ul>
+        <ul class="card">
           <img
             src="./images/rutas/camino-primitivo.jpg"
             alt="Королевский путь, изначальный."
             class="card__image"
           />
-          <div class="card__subtitle">
-            <div class="card__place">Изначальный</div>
-            <button type="button" class="card__like oscuro"></button>
-          </div>
-        </div>
+          <li class="card__subtitle">
+            <h2 class="card__place">Изначальный</h2>
+            <button type="button" class="card__like button-grey"></button>
+          </li>
+        </ul>
       </section>
     </main>
 
@@ -109,11 +110,11 @@
 
     <div class="popup">
       <form class="popup__container">
-        <button type="button" class="popup__close oscuro"></button>
+        <button type="button" class="popup__close button-grey"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input" value="" />
-        <input class="popup__input" />
-        <button class="popup__button-save oscuro">Сохранить</button>
+        <input class="popup__input popup__input_name"/>
+        <input class="popup__input popup__input_description"/>
+        <button class="popup__button-save button-grey">Сохранить</button>
       </form>
     </div>
 
