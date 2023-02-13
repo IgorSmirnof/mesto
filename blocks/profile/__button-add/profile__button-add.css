@@ -13,7 +13,7 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 940px) {
   .profile__button-add {
     margin: 0 auto;
     width: 282px;

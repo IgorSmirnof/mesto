@@ -7,8 +7,8 @@ const profileDescription = profile.querySelector(".profile__description");
 const buttonEdit = profile.querySelector(".profile__button-edit");
 const formSend = popup.querySelector(".popup__container");
 const buttonClose = popup.querySelector(".popup__close");
-const inputName = popup.querySelector(".popup__input_name");
-const inputDescription = popup.querySelector(".popup__input_description");
+const inputName = popup.querySelector(".popup__input_field_name");
+const inputDescription = popup.querySelector(".popup__input_field_description");
 
 buttonEdit.addEventListener("click", function () {
   popup.classList.add("popup_opened");
