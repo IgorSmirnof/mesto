@@ -1,0 +1,17 @@
+.popup__image-display_figure{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-content: center; */
+  margin: 0 auto;
+  padding: 0;
+  max-width: 75vw;
+  max-height: 75vh;
+
+  
+  position: fixed;
+  /* Выводим в центр */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

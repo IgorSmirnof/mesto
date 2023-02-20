@@ -1,0 +1,14 @@
+.card__basura{
+  width: 18px;
+  height: 19px;
+  background-image: url(../../../images/trash.svg);
+  background-repeat: no-repeat;
+  background-color: transparent;  
+  background-size: contain;
+  /* border: 1px solid black; */
+  /* flex-shrink: 0; */
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: 0;
+}
