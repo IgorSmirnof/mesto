@@ -5,9 +5,12 @@
   /* align-content: center; */
   margin: 0 auto;
   padding: 0;
+  /* width: 75vw; */
+  /* max-height: 75vh; */
   max-width: 75vw;
   max-height: 75vh;
-
+  /* object-fit: cover; */
+  object-fit: contain;
   
   position: fixed;
   /* Выводим в центр */
