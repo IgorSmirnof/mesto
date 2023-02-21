@@ -40,7 +40,7 @@ function createCard(name, link) {
 }
 
 // подгружаем данные для отк картинки на весь экран
-const popupImageDisplay = document.querySelector(".popup__picture");
+const popupImageDisplay = document.querySelector(".popup_picture");
 function openPopupImage(e) {
   popupImageDisplay.querySelector(".popup__full").src = e.target.src;
   popupImageDisplay.querySelector(".popup__full").alt = e.target.alt;
