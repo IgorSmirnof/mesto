@@ -1,16 +1,10 @@
 .popup__image-display_figure{
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-content: center; */
   margin: 0 auto;
   padding: 0;
-  /* width: 75vw; */
-  /* max-height: 75vh; */
+  /* max-width: 880px; */
   max-width: 75vw;
-  max-height: 75vh;
-  /* object-fit: cover; */
-  object-fit: contain;
   
   position: fixed;
   /* Выводим в центр */

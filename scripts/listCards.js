@@ -1,27 +1,26 @@
 export const listCards = [
   {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+    name: "1024x576",
+    link: "https://3rutas.com/sprint5/mar_2.jpg",
   },
   {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+    name: "1080x1920",
+    link: "https://3rutas.com/sprint5/mar_7.jpg",
   },
   {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+    name: "1200x798",
+    link: "https://3rutas.com/sprint5/mar_1.jpg",
   },
   {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+    name: "1920x1280",
+    link: "https://3rutas.com/sprint5/mar_4.jpg",
   },
   {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+    name: "2048x1280",
+    link: "https://3rutas.com/sprint5/mar_5.jpg",
   },
   {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
+    name: "2560x1600",
+    link: "https://3rutas.com/sprint5/mar_6.jpg",
+  }
 ];
-// export const initialCards

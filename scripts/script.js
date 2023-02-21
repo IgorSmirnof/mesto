@@ -60,7 +60,7 @@ collectCards(listCards);
 
 // открытие окна добавления фото
 const buttonAdd = profile.querySelector(".profile__button-add");
-const imageAdd = document.querySelector(".popup_image_add");
+const imageAdd = body.querySelector(".popup_image_add");
 const inputPlace = imageAdd.querySelector(".popup__input_field_place");
 const inputLink = imageAdd.querySelector(".popup__input_field_link");
 buttonAdd.addEventListener("click", function () {
