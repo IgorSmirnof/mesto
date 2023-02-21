@@ -1,4 +1,4 @@
-.popup__image-display_full{
+.popup__full{
   object-fit: cover;
   /* width: 100%; */
   max-height: 75vh;

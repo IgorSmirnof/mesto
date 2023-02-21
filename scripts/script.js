@@ -42,9 +42,9 @@ function createCard(name, link) {
 // подгружаем данные для отк картинки на весь экран
 const popupImageDisplay = document.querySelector(".popup__image-display");
 function openPopupImage(e) {
-  popupImageDisplay.querySelector(".popup__image-display_full").src = e.target.src;
-  popupImageDisplay.querySelector(".popup__image-display_full").alt = e.target.alt;
-  popupImageDisplay.querySelector(".popup__image-display_caption").textContent = e.target.alt;
+  popupImageDisplay.querySelector(".popup__full").src = e.target.src;
+  popupImageDisplay.querySelector(".popup__full").alt = e.target.alt;
+  popupImageDisplay.querySelector(".popup__caption").textContent = e.target.alt;
   openPopup(popupImageDisplay);
 };
 
