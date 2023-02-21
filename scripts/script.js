@@ -30,27 +30,33 @@ formSend.addEventListener("submit", function (e) {
 // функция: создаем карточку и вешаем события - удаление карточки, лайки и отк картинки
 function createCard(name, link) {
   const cardNew = template.querySelector(".card").cloneNode(true);
-  cardNew.querySelector(".card__image").src = `${link}`;
-  cardNew.querySelector(".card__image").alt = `${name}`;
+  const cardNewImage = cardNew.querySelector(".card__image");
+  const cardNewLike = cardNew.querySelector(".card__like");
+  cardNewImage.src = `${link}`;
+  cardNewImage.alt = `${name}`;
+
   cardNew.querySelector(".card__place").textContent = `${name}`;
-  cardNew.querySelector(".card__basura").addEventListener("click", (e) => e.target.parentElement.remove());
-  cardNew.addEventListener("click", (e) => e.target.classList.toggle("card__like_active"));
-  cardNew.querySelector(".card__image").addEventListener("click", (e) => openPopupImage(e))  ;
+  cardNew.querySelector(".card__basura").addEventListener("click", (e) => cardNew.remove());
+  // cardNew.querySelector(".card__basura").addEventListener("click", (e) => e.target.parentElement.remove());
+  cardNewLike.addEventListener("click", (e) => e.target.classList.toggle("card__like_active"));
+  cardNewImage.addEventListener("click", (e) => openPopupImage(e))  ;
   return cardNew;
 }
 
 // подгружаем данные для отк картинки на весь экран
 const popupImageDisplay = document.querySelector(".popup_picture");
+const popupImageDisplayFull = popupImageDisplay.querySelector(".popup__full");
+const popupImageDisplayCaption = popupImageDisplay.querySelector(".popup__caption");
 function openPopupImage(e) {
-  popupImageDisplay.querySelector(".popup__full").src = e.target.src;
-  popupImageDisplay.querySelector(".popup__full").alt = e.target.alt;
-  popupImageDisplay.querySelector(".popup__caption").textContent = e.target.alt;
+  popupImageDisplayFull.src = e.target.src;
+  popupImageDisplayFull.alt = e.target.alt;
+  popupImageDisplayCaption.textContent = e.target.alt;
   openPopup(popupImageDisplay);
 };
 
 // наполняем страницу карточками из массива карт
 const template = document.querySelector("#card").content;
-let cards = document.querySelector(".cards");
+const cards = document.querySelector(".cards");
 function collectCards(arr) {
   arr.forEach(function (el) {
     cards.append(createCard(el.name, el.link));
