@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css"> 
+  <script src="validate.js" defer ></script>
+  <title>Document</title>
+</head>
+<body>
+  <!-- novalidate -->
+  <form class="form" novalidate>
+
+    <label class="form__field">
+      Введите адрес электронной почты
+      <input id="email-input" class="form__input" type="email" placeholder="Email" required>
+      <span class="email-input-error form__input-error"></span>
+    </label>
+
+    <label class="form__field"> <hr>   
+      Введите пароль 
+      <input id="password-input" class="form__input" type="password" placeholder="Password" required minlength="6">
+      <span class="password-input-error form__input-error"></span>
+    </label>
+    <button class="form__submit">Войти</button>
+
+  </form> 
+
+
+ 
+</body>
+</html>

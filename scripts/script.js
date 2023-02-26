@@ -92,3 +92,17 @@ body.addEventListener("click", function (e) {
 
 function openPopup(el) { el.classList.add("popup_opened"); }
 function closePopup(el) { el.classList.remove("popup_opened"); }
+
+
+//----------------------
+
+const popup = body.querySelectorAll('.popup');
+popup.forEach( function(el){
+document.addEventListener('click', (e) => { 
+  if(e.target === el ) {closePopup(el)}
+});
+document.addEventListener('keydown', (e) => { 
+  if( e.key == 'Escape') {closePopup(el)}
+});
+});
+
