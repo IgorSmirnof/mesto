@@ -5,6 +5,7 @@ const validationValue = {
   inactiveButtonClass: "button_inactive",
   inputErrorClass: "form__input_type_error",
   errorClass: "form__input-error_active",
+  button: ".popup__close",
 };
 
 const showInputError = (formElement, inputElement, errorMessage) => {
@@ -16,7 +17,7 @@ const showInputError = (formElement, inputElement, errorMessage) => {
 
 const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  removeClassEl(inputElement, validationValue.errorClass);
+  removeClassEl(inputElement, validationValue.inputErrorClass);
   removeClassEl(errorElement, validationValue.errorClass);
   errorElement.textContent = "";
 };
@@ -30,9 +31,13 @@ const checkInputValidity = (formElement, inputElement) => {
 };
 
 const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll(validationValue.inputSelector));
+  const inputList = Array.from(
+    formElement.querySelectorAll(validationValue.inputSelector)
+  );
 
-  const buttonElement = formElement.querySelector(validationValue.submitButtonSelector);
+  const buttonElement = formElement.querySelector(
+    validationValue.submitButtonSelector
+  );
   toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
@@ -43,14 +48,16 @@ const setEventListeners = (formElement) => {
 };
 
 function enableValidation() {
-  const formList = Array.from(document.querySelectorAll(validationValue.formSelector));
+  const formList = Array.from(
+    document.querySelectorAll(validationValue.formSelector)
+  );
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
     setEventListeners(formElement);
   });
-};
+}
 
 enableValidation();
 
@@ -58,7 +65,7 @@ function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
-};
+}
 
 function toggleButtonState(inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {
@@ -66,9 +73,47 @@ function toggleButtonState(inputList, buttonElement) {
   } else {
     removeClassEl(buttonElement, validationValue.inactiveButtonClass);
   }
-};
+}
 
 function removeClassEl(el, classEl) {
-  el.classList.remove(classEl);};
+  el.classList.remove(classEl);
+}
 function addClassEl(el, classEl) {
-  el.classList.add(classEl);};
+  el.classList.add(classEl);
+}
+
+//-------очистка ошибок при закрытии попапа через Х------
+
+const button = document.querySelectorAll(validationValue.button);
+button.forEach((el) => el.addEventListener("click", clearInputs));
+
+// -------очистка ошибок при закрытии попапа через click out zone ----
+const popup = document.querySelectorAll(".popup");
+popup.forEach(function (el) {
+  document.addEventListener("click", (e) => {
+    if (e.target == el) {
+      clearInputs();
+    }
+  });
+});
+
+// -------очистка ошибок при закрытии попапа через Esc--------
+document.addEventListener("keydown", function (e) {
+  if (e.key == "Escape") {
+    clearInputs();
+  }
+});
+
+// фунция очистки ошибки при выходе из формы не через батон-сабмит
+function clearInputs() {
+  const errorScreen = Array.from(
+    document.getElementsByClassName(validationValue.errorClass)
+  );
+  errorScreen.forEach((el) => (el.innerHTML = ""));
+  const errorInputLine = Array.from(
+    document.getElementsByClassName(validationValue.inputErrorClass)
+  );
+  errorInputLine.forEach((el) =>
+    el.classList.remove(validationValue.inputErrorClass)
+  );
+}

@@ -1,5 +1,10 @@
 import { listCards } from "./listCards.js";
-
+const formValues = {
+  name: "Введите имя",
+  description: "Вид деятельности",
+  fieldName: "Название",
+  fieldLink: "Ссылка на картинку",
+};
 const body = document.querySelector(".body-root");
 const main = document.querySelector(".main");
 
@@ -8,11 +13,15 @@ const profile = document.querySelector(".profile");
 // открытие окна профиля
 const popupProfile = document.querySelector(".popup_profile");
 const inputName = popupProfile.querySelector(".popup__input_field_name");
-const inputDescription = popupProfile.querySelector(".popup__input_field_description");
+const inputDescription = popupProfile.querySelector(
+  ".popup__input_field_description"
+);
 const buttonEdit = profile.querySelector(".profile__button-edit");
 buttonEdit.addEventListener("click", function () {
-  inputName.value = profileName.textContent;
-  inputDescription.value = profileDescription.textContent;
+  inputName.value = "";
+  inputDescription.value = "";
+  inputName.placeholder = formValues.name;
+  inputDescription.placeholder = formValues.description;
   openPopup(popupProfile);
 });
 
@@ -36,23 +45,27 @@ function createCard(name, link) {
   cardNewImage.alt = `${name}`;
 
   cardNew.querySelector(".card__place").textContent = `${name}`;
-  cardNew.querySelector(".card__basura").addEventListener("click", (e) => cardNew.remove());
-  // cardNew.querySelector(".card__basura").addEventListener("click", (e) => e.target.parentElement.remove());
-  cardNewLike.addEventListener("click", (e) => e.target.classList.toggle("card__like_active"));
-  cardNewImage.addEventListener("click", (e) => openPopupImage(e))  ;
+  cardNew
+    .querySelector(".card__basura")
+    .addEventListener("click", (e) => cardNew.remove());
+  cardNewLike.addEventListener("click", (e) =>
+    e.target.classList.toggle("card__like_active")
+  );
+  cardNewImage.addEventListener("click", (e) => openPopupImage(e));
   return cardNew;
 }
 
 // подгружаем данные для отк картинки на весь экран
 const popupImageDisplay = document.querySelector(".popup_picture");
 const popupImageDisplayFull = popupImageDisplay.querySelector(".popup__full");
-const popupImageDisplayCaption = popupImageDisplay.querySelector(".popup__caption");
+const popupImageDisplayCaption =
+  popupImageDisplay.querySelector(".popup__caption");
 function openPopupImage(e) {
   popupImageDisplayFull.src = e.target.src;
   popupImageDisplayFull.alt = e.target.alt;
   popupImageDisplayCaption.textContent = e.target.alt;
   openPopup(popupImageDisplay);
-};
+}
 
 // наполняем страницу карточками из массива карт
 const template = document.querySelector("#card").content;
@@ -82,27 +95,37 @@ formAdd.addEventListener("submit", function (e) {
   cards.prepend(createCard(inputPlace.value, inputLink.value));
   listCards.unshift({ name: inputPlace.value, link: inputLink.value });
   closePopup(imageAdd);
-  inputPlace.value = ""; inputLink.value = "";
+  inputPlace.value = "";
+  inputLink.value = "";
 });
 
 // закрытие всех всплывающих окон через Х
 body.addEventListener("click", function (e) {
-  if (e.target.classList.contains("popup__close")) {closePopup(e.target.closest(".popup"));}
+  if (e.target.classList.contains("popup__close")) {
+    closePopup(e.target.closest(".popup"));
+  }
 });
 
-function openPopup(el) { el.classList.add("popup_opened"); }
-function closePopup(el) { el.classList.remove("popup_opened"); }
+// класс +/-
+function openPopup(el) {
+  el.classList.add("popup_opened");
+}
+function closePopup(el) {
+  el.classList.remove("popup_opened");
+}
 
-
-//----------------------
-
-const popup = body.querySelectorAll('.popup');
-popup.forEach( function(el){
-document.addEventListener('click', (e) => { 
-  if(e.target === el ) {closePopup(el)}
+// закрытие окна через click out zone
+const popup = body.querySelectorAll(".popup");
+popup.forEach(function (el) {
+  document.addEventListener("click", (e) => {
+    if (e.target === el) {
+      closePopup(el);
+    }
+  });
+  // закрытие окна через Esc
+  document.addEventListener("keydown", (e) => {
+    if (e.key == "Escape") {
+      closePopup(el);
+    }
+  });
 });
-document.addEventListener('keydown', (e) => { 
-  if( e.key == 'Escape') {closePopup(el)}
-});
-});
-
