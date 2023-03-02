@@ -41,8 +41,10 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__input/_field/_link/popup__input_field_link.css);
 @import url(../blocks/popup/__input/_field/_description/popup__input_field_description.css);
-@import url(../blocks/form/__input-error/form__input-error.css);
+
+
 @import url(../blocks/form/__input/_type_error/form__input_type_error.css);
+@import url(../blocks/input-error/input-error.css);
 
 @import url(../blocks/button/button.css);
 @import url(../blocks/button/_inactive/button_inactive.css);
