@@ -52,14 +52,14 @@
     </main>
 
     <div class="popup popup_profile">
-      <form class="popup__container">
+      <form class="popup__container" autocomplete = "off">
         <button type="button" class="popup__close button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
 
-        <input id="input-name" class="popup__input popup__input_field_name" minlength="2" maxlength="40" required/>
+        <input id="input-name" class="popup__input popup__input_field_name" minlength="2" maxlength="40" required placeholder = "Введите имя"/>
         <span class="input-name-error input-error"></span>
 
-        <input id="input-description" class="popup__input popup__input_field_description" minlength="2" maxlength="200" required/>
+        <input id="input-description" class="popup__input popup__input_field_description" minlength="2" maxlength="200" required placeholder = "Вид деятельности"/>
         <span class="input-description-error input-error"></span>
 
         <button class="popup__button-save button">Сохранить</button>
@@ -67,12 +67,12 @@
     </div>
 
     <div class="popup popup_image_add">
-      <form class="popup__container">
+      <form class="popup__container" autocomplete = "off">
         <button type="button" class="popup__close button"></button>
         <h2 class="popup__title">Новое место</h2>
-        <input id="input-place" class="popup__input popup__input_field_place"  minlength="2" maxlength="30" required/>
+        <input id="input-place" class="popup__input popup__input_field_place"  minlength="2" maxlength="30" required placeholder = "Название" />
         <span class="input-place-error input-error"></span>
-        <input id="input-link" class="popup__input popup__input_field_link" type = 'url' required/>
+        <input id="input-link" class="popup__input popup__input_field_link" type = 'url' required placeholder = "Ссылка на картинку"/>
         <span class="input-link-error input-error"></span>
         <button class="popup__button-save button">Сохранить</button>
       </form>
