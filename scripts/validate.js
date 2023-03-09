@@ -7,7 +7,12 @@ const validationValue = {
   errorClass: "form__input-error_active",
 };
 
-const showInputError = (formElement, inputElement, errorMessage, initialData) => {
+const showInputError = (
+  formElement,
+  inputElement,
+  errorMessage,
+  initialData
+) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   addClassEl(inputElement, initialData.inputErrorClass);
   errorElement.textContent = errorMessage;
@@ -23,7 +28,12 @@ const hideInputError = (formElement, inputElement, initialData) => {
 
 const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage, validationValue);
+    showInputError(
+      formElement,
+      inputElement,
+      inputElement.validationMessage,
+      validationValue
+    );
   } else {
     hideInputError(formElement, inputElement, validationValue);
   }
@@ -51,7 +61,9 @@ function enableValidation(initialData) {
     document.querySelectorAll(initialData.formSelector)
   );
   formList.forEach((formElement) => {
-    formElement.addEventListener("submit", (evt) => {evt.preventDefault(); });
+    formElement.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+    });
     setEventListeners(formElement, validationValue);
   });
 }
