@@ -5,13 +5,11 @@ const formData = {
   errorClass: "form__input-error_active",
 };
 
-
 const body = document.querySelector(".body-root");
 const profile = document.querySelector(".profile");
+const popups = body.querySelectorAll(".popup");
 
-// открытие окна профиля
 const popupProfile = document.querySelector(".popup_profile");
-
 const formAddProfile = popupProfile.querySelector(".popup__container");
 const inputName = popupProfile.querySelector(".popup__input_field_name");
 const inputDescription = popupProfile.querySelector(".popup__input_field_description");
@@ -24,7 +22,6 @@ const formAdd = imageAdd.querySelector(".popup__container");
 const inputPlace = imageAdd.querySelector(".popup__input_field_place");
 const inputLink = imageAdd.querySelector(".popup__input_field_link");
 
-
 const buttonEdit = profile.querySelector(".profile__button-edit");
 const buttonAdd = profile.querySelector(".profile__button-add");
 
@@ -35,10 +32,14 @@ const popupImageDisplayCaption = popupImageDisplay.querySelector(".popup__captio
 const template = document.querySelector("#card").content;
 const cards = document.querySelector(".cards");
 
-const popup = body.querySelectorAll(".popup");
 
+// открытие окна профиля
 buttonEdit.addEventListener("click", function () {
+  inputName.value = profileName.textContent;
+  inputDescription.value = profileDescription.textContent;
   openPopup(popupProfile);
+  closeByOut(popupProfile);
+  closeByX(popupProfile);
 });
 
 // сохранение нового профиля и закрытие окна
@@ -48,7 +49,6 @@ formUserProfile.addEventListener("submit", function (e) {
   profileDescription.textContent = inputDescription.value;
   closePopup(popupProfile);
   addButtonInactive(formAddProfile);
-  // formAddProfile.querySelector('.popup__button-save').classList.add('button_inactive');
 });
 
 // функция: создаем карточку и вешаем события - удаление карточки, лайки и отк картинки
@@ -62,7 +62,7 @@ function createCard(name, link) {
   cardNew.querySelector(".card__place").textContent = `${name}`;
   cardNew
     .querySelector(".card__basura")
-    .addEventListener("click", (e) => cardNew.remove());
+    .addEventListener("click", (e) => cardNew.remove());  //е ---!!!!
   cardNewLike.addEventListener("click", (e) =>
     e.target.classList.toggle("card__like_active")
   );
@@ -76,6 +76,8 @@ function openPopupImage(e) {
   popupImageDisplayFull.alt = e.target.alt;
   popupImageDisplayCaption.textContent = e.target.alt;
   openPopup(popupImageDisplay);
+  closeByOut(popupImageDisplay);
+  closeByX(popupImageDisplay);
 }
 
 // наполняем страницу карточками из массива карт
@@ -87,8 +89,10 @@ function collectCards(arr) {
 collectCards(listCards);
 
 // открытие окна добавления фото
-buttonAdd.addEventListener("click", function () {
+buttonAdd.addEventListener("click", function (e) {
   openPopup(imageAdd);
+  closeByOut(imageAdd);
+  closeByX(imageAdd);
 });
 
 // сохранение фото и закрытие окна
@@ -98,42 +102,28 @@ formAdd.addEventListener("submit", function (e) {
   // listCards.unshift({ name: inputPlace.value, link: inputLink.value });
   closePopup(imageAdd);
   addButtonInactive(formAdd);
-  // formAdd.querySelector('.popup__button-save').classList.add('button_inactive');
 });
 
 // закрытие всех всплывающих окон через Х
-body.addEventListener("click", function (e) {
-  if (e.target.classList.contains("popup__close")) {
-    closePopup(e.target.closest(".popup"));
-    if(formData.errorClass){
-      console.log('error x');
-      
-      clearInput(formData.errorClass, formData.inputErrorClass)
-    } 
-  }
-});
+function closeByX(el){
+  const buttonX = el.querySelector(".popup__close");
+  buttonX.addEventListener("click", (e) => closePopup(e.target.closest(".popup")));
+};
+
+
 
 // закрытие окна через click out zone
-
-popup.forEach(function (el) {
+function closeByOut(el){
   el.addEventListener("click", (e) => {
     if (e.target === el) {
       closePopup(el);
       clearInput(formData.errorClass, formData.inputErrorClass)
     }
   });
+};
 
-  // закрытие окна через Esc
-  document.addEventListener("keydown", (e) => {
-    if (e.key == "Escape") {
-      closePopup(el);
-      clearInput(formData.errorClass, formData.inputErrorClass)
-    }
-  });
-});
-
-
-function closeByEsc(evt) {
+// закрытие окна через Esc
+function closeByEsc(evt) {           
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup); 
@@ -143,13 +133,12 @@ function closeByEsc(evt) {
 // класс +/-
 function openPopup(el) {
   el.classList.add("popup_opened");
-  document.addEventListener('keydown', closeByEsc)
+  document.addEventListener('keydown', closeByEsc, { once: true })
 }
 function closePopup(el) {
   el.classList.remove("popup_opened");
-  document.removeEventListener('keydown', closeByEsc)
+  // document.removeEventListener('keydown', closeByEsc)
 }
-
 
 // фунция очистки ошибки при выходе из формы не через батон-сабмит
 function clearInput(errorClass, inputErrorClass) {
@@ -161,7 +150,6 @@ function clearInput(errorClass, inputErrorClass) {
   const errorInputSubline = Array.from(document.getElementsByClassName(errorClass));
   errorInputSubline.forEach((el) => el.textContent = "")
 }
-
 
 function addButtonInactive(form){
   form.querySelector('.popup__button-save').classList.add('button_inactive');
