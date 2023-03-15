@@ -40,9 +40,7 @@ buttonEdit.addEventListener("click", function () {
   inputName.value = profileName.textContent;
   inputDescription.value = profileDescription.textContent;
   openPopup(popupProfile);
-  closeByOut(popupProfile);
-  closeByX(popupProfile);
-  savePopupProfile();
+  clearInput(popupProfile, formData.errorClass, formData.inputErrorClass);
 });
 
 // сохранение нового профиля и закрытие окна
@@ -53,8 +51,9 @@ function savePopupProfile() {
     profileDescription.textContent = inputDescription.value;
     closePopup(popupProfile);
     addButtonInactive(formAddProfile);
-  }, { once: true });
+  });
 }
+savePopupProfile();
 
 // функция: создаем карточку и вешаем события - удаление карточки, лайки и отк картинки
 function createCard(name, link) {
@@ -81,8 +80,6 @@ function openPopupImage(e) {
   popupImageDisplayFull.alt = e.target.alt;
   popupImageDisplayCaption.textContent = e.target.alt;
   openPopup(popupImageDisplay);
-  closeByOut(popupImageDisplay);
-  closeByX(popupImageDisplay);
 }
 
 // наполняем страницу карточками из массива карт
@@ -96,40 +93,44 @@ collectCards(listCards);
 // открытие окна добавления фото
 buttonAdd.addEventListener("click", function (e) {
   openPopup(imageAdd);
-  closeByOut(imageAdd);
-  closeByX(imageAdd);
-  savePopupImage();
+  clearInput(imageAdd, formData.errorClass, formData.inputErrorClass);
 });
 
 // сохранение фото и закрытие окна
 function savePopupImage() {
-  formAdd.addEventListener(
-    "submit",
-    function (e) {
-      e.preventDefault();
-      closePopup(imageAdd);
-      cards.prepend(createCard(inputPlace.value, inputLink.value));
-      // listCards.unshift({ name: inputPlace.value, link: inputLink.value });
-      addButtonInactive(formAdd);
-    },
+  formAdd.addEventListener("submit", function (e) {
+    e.preventDefault();
+    closePopup(imageAdd);
+    cards.prepend(createCard(inputPlace.value, inputLink.value));
+    // listCards.unshift({ name: inputPlace.value, link: inputLink.value });
+    addButtonInactive(formAdd);
+    inputPlace.value = "";
+    inputLink.value = "";
+  });
+}
+savePopupImage();
+
+// закрытие всех всплывающих окон через Х
+function setCloseByClickButtonXListener(el) {
+  const buttonX = el.querySelector(".popup__close");
+  buttonX.addEventListener(
+    "click",
+    (e) => closePopup(e.target.closest(".popup")),
     { once: true }
   );
 }
 
-// закрытие всех всплывающих окон через Х
-function closeByX(el) {
-  const buttonX = el.querySelector(".popup__close");
-  buttonX.addEventListener("click", (e) =>closePopup(e.target.closest(".popup")), { once: true });
+// закрытие окна через click out zone
+function setCloseByClickOverlayListener(el) {
+  // el.addEventListener("click", (e) => {if (e.target === el) { closePopup(el); }});
+  el.addEventListener("click", (e) => OverlayListener(e, el));
+  el.removeEventListener("click", (e) => OverlayListener(e, el));
 }
 
-// закрытие окна через click out zone
-function closeByOut(el) {
-  el.addEventListener("click", (e) => {
-    if (e.target === el) {
-      closePopup(el);
-      clearInput(formData.errorClass, formData.inputErrorClass);
-    }
-  }, { once: true });
+function OverlayListener(event, elem) {
+  if (event.target === elem) {
+    closePopup(elem);
+  }
 }
 
 // закрытие окна через Esc
@@ -144,29 +145,32 @@ function closeByEsc(evt) {
 function openPopup(el) {
   el.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEsc, { once: true });
+  setCloseByClickOverlayListener(el);
+  setCloseByClickButtonXListener(el);
 }
 function closePopup(el) {
   el.classList.remove("popup_opened");
-  // document.removeEventListener('keydown', closeByEsc)
 }
 
 // фунция очистки ошибки при выходе из формы не через батон-сабмит
-function clearInput(errorClass, inputErrorClass) {
+function clearInput(elPopup, errorClass, inputErrorClass) {
+  // const errorInputLine = Array.from(document.getElementsByClassName(inputErrorClass));
   const errorInputLine = Array.from(
-    document.getElementsByClassName(inputErrorClass)
+    elPopup.getElementsByClassName(inputErrorClass)
   );
+
   errorInputLine.forEach((el) => {
-    el.form.reset();
     el.classList.remove(inputErrorClass);
   });
 
   const errorInputSubline = Array.from(
-    document.getElementsByClassName(errorClass)
+    elPopup.getElementsByClassName(errorClass)
   );
   errorInputSubline.forEach((el) => (el.textContent = ""));
 }
 
 function addButtonInactive(form) {
-  form.querySelector(".popup__button-save").classList.add("button_inactive");
+  const popupButtonSave = form.querySelector(".popup__button-save");
+  popupButtonSave.classList.add("button_inactive");
+  popupButtonSave.disabled = true;
 }
-
