@@ -124,7 +124,6 @@ function setCloseByClickButtonXListener(el) {
 function setCloseByClickOverlayListener(el) {
   // el.addEventListener("click", (e) => {if (e.target === el) { closePopup(el); }});
   el.addEventListener("click", (e) => OverlayListener(e, el));
-  el.removeEventListener("click", (e) => OverlayListener(e, el));
 }
 
 function OverlayListener(event, elem) {
@@ -150,6 +149,7 @@ function openPopup(el) {
 }
 function closePopup(el) {
   el.classList.remove("popup_opened");
+  el.removeEventListener("click", (e) => OverlayListener(e, el));
 }
 
 // фунция очистки ошибки при выходе из формы не через батон-сабмит
