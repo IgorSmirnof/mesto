@@ -174,6 +174,7 @@ function clearInput(elPopup, errorClass, inputErrorClass) {
   errorInputSubline.forEach((el) => (el.textContent = ""));
 }
 
+
 function addButtonInactive(form) {
   const popupButtonSave = form.querySelector(".popup__button-save");
   popupButtonSave.classList.add("button_inactive");
