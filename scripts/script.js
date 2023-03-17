@@ -37,10 +37,10 @@ const cards = document.querySelector(".cards");
 
 // открытие окна профиля
 buttonEdit.addEventListener("click", function () {
+  clearInput(popupProfile, formData.errorClass, formData.inputErrorClass);
   inputName.value = profileName.textContent;
   inputDescription.value = profileDescription.textContent;
   openPopup(popupProfile);
-  clearInput(popupProfile, formData.errorClass, formData.inputErrorClass);
 });
 
 // сохранение нового профиля и закрытие окна
@@ -164,6 +164,7 @@ function clearInput(elPopup, errorClass, inputErrorClass) {
   );
 
   errorInputLine.forEach((el) => {
+    el.form.reset();
     el.classList.remove(inputErrorClass);
   });
 
