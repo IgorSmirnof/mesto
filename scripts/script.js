@@ -92,6 +92,8 @@ collectCards(listCards);
 
 // открытие окна добавления фото
 buttonAdd.addEventListener("click", function (e) {
+  inputPlace.value = "";
+  inputLink.value = "";
   openPopup(imageAdd);
   clearInput(imageAdd, formData.errorClass, formData.inputErrorClass);
 });
@@ -103,34 +105,35 @@ function savePopupImage() {
     closePopup(imageAdd);
     cards.prepend(createCard(inputPlace.value, inputLink.value));
     // listCards.unshift({ name: inputPlace.value, link: inputLink.value });
-    addButtonInactive(formAdd);
     inputPlace.value = "";
     inputLink.value = "";
+    addButtonInactive(formAdd);
   });
 }
 savePopupImage();
 
-// закрытие всех всплывающих окон через Х
+// закрытие всплывающих окон через Х
 function setCloseByClickButtonXListener(el) {
-  const buttonX = el.querySelector(".popup__close");
-  buttonX.addEventListener(
-    "click",
-    (e) => closePopup(e.target.closest(".popup")),
-    { once: true }
-  );
+  el.addEventListener("mousedown", runXListener);
+}
+function runXListener(event) {
+  if (event.target.classList.contains("popup__close")) {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
+  }
 }
 
 // закрытие окна через click out zone
 function setCloseByClickOverlayListener(el) {
-  // el.addEventListener("click", (e) => {if (e.target === el) { closePopup(el); }});
-  el.addEventListener("click", (e) => OverlayListener(e, el));
+  el.addEventListener("mousedown", runOverlayListener);
 }
-
-function OverlayListener(event, elem) {
-  if (event.target === elem) {
-    closePopup(elem);
+function runOverlayListener(event) {
+  if (event.target.classList.contains("popup_opened")) {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
   }
 }
+
 
 // закрытие окна через Esc
 function closeByEsc(evt) {
@@ -143,18 +146,19 @@ function closeByEsc(evt) {
 // класс +/-
 function openPopup(el) {
   el.classList.add("popup_opened");
-  document.addEventListener("keydown", closeByEsc, { once: true });
-  setCloseByClickOverlayListener(el);
+  document.addEventListener("keydown", closeByEsc);
   setCloseByClickButtonXListener(el);
+  setCloseByClickOverlayListener(el);
 }
 function closePopup(el) {
+  document.removeEventListener("keydown", closeByEsc);
+  el.removeEventListener("mousedown", runXListener);
+  el.removeEventListener("mousedown", runOverlayListener);
   el.classList.remove("popup_opened");
-  el.removeEventListener("click", (e) => OverlayListener(e, el));
 }
 
 // фунция очистки ошибки при выходе из формы не через батон-сабмит
 function clearInput(elPopup, errorClass, inputErrorClass) {
-  // const errorInputLine = Array.from(document.getElementsByClassName(inputErrorClass));
   const errorInputLine = Array.from(
     elPopup.getElementsByClassName(inputErrorClass)
   );
