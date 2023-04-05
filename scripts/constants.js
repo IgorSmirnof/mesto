@@ -24,3 +24,12 @@ export const listCards = [
     link: "https://3rutas.com/sprint5/mar_6.jpg",
   }
 ];
+
+export const validationValue = {
+  formSelector: ".popup__container",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button-save",
+  inactiveButtonClass: "button_inactive",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+};
