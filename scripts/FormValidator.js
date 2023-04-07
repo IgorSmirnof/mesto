@@ -35,7 +35,7 @@ class FormValidator {
 
   _setEventListeners = (formElement) => {
     const inputList = Array.from( formElement.querySelectorAll(this._inputSelector) );
-    console.log(inputList);
+    // console.log(inputList);
     const buttonElement = formElement.querySelector(this._submitButtonSelector);
 
     this._toggleButtonState(inputList, buttonElement, this._value);
@@ -52,14 +52,14 @@ class FormValidator {
 
   enableValidation() {
     const formList = Array.from( document.querySelectorAll(this._formSelector));
-      console.log(this._formSelector);
+      // console.log(this._formSelector);
     formList.forEach((formElement) => {
       formElement.addEventListener("submit", (evt) => {
         evt.preventDefault();
       });
       this._setEventListeners(formElement, this._Value);
     });
-    console.log('end of fornVal');
+    // console.log('end of fornVal');
   }
 
 
@@ -86,6 +86,30 @@ _hasInvalidInput(inputList) {
     el.classList.add(classEl);
   }
   
+
+// фунция очистки ошибки при выходе из формы не через батон-сабмит
+clearInput(elPopup) {
+  const errorInputLine = Array.from(
+    elPopup.getElementsByClassName(this._inputErrorClass)
+  );
+
+  errorInputLine.forEach((el) => {
+    el.form.reset();
+    el.classList.remove(this._inputErrorClass);
+  });
+
+  const errorInputSubline = Array.from(
+    elPopup.getElementsByClassName(this._errorClass)
+  );
+  errorInputSubline.forEach((el) => (el.textContent = ""));
+}
+
+addButtonInactive() {
+  const popupButtonSave = this._formElement.querySelector(this._submitButtonSelector);
+  console.log('popupButtonSave ', popupButtonSave);
+  popupButtonSave.classList.add(this._inactiveButtonClass);
+  popupButtonSave.disabled = true;
+}
 
 }
 
