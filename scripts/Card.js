@@ -25,17 +25,23 @@ export class Card{
     this._image.setAttribute('src', `${this._link}`);
     this._image.setAttribute('alt', `${this._name}`);
     this._element.querySelector('.card__place').textContent = `${this._name}`;
-      // console.log(this._name, this._link);
     return this._element;
   }
+
 
   // для лайков, удаления и клика по картинке - отдельные методы класса
   _setEventListeners () {
     this._buttonLike.addEventListener('click', () => _toggleLike());
     this._buttonDelete.addEventListener('click', () => this._deleteCard());
-    this._image.addEventListener('click', () => _handleImageClick());
+    this._image.addEventListener('click', () => { 
+        this._handleImageClick() 
+      }); 
   }
   _toggleLike(){ this._buttonLike.classList.toggle("card__like_active") };
   _deleteCard(){ this._element.remove() };
-  _handleImageClick(){ this._handleCardClick(this._name, this._link) };
+  _handleImageClick() { 
+    this._handleCardClick(this._name, this._link) 
+  }; 
 }
+
+

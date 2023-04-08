@@ -10,10 +10,8 @@ const formData = {
 
 const body = document.querySelector(".body-root");
 const profile = document.querySelector(".profile");
-const popups = body.querySelectorAll(".popup");
 
 const popupProfile = document.querySelector(".popup_profile");
-const formAddProfile = popupProfile.querySelector(".popup__container");
 const inputName = popupProfile.querySelector(".popup__input_field_name");
 const inputDescription = popupProfile.querySelector(
   ".popup__input_field_description"
@@ -35,7 +33,6 @@ const popupImageDisplayFull = popupImageDisplay.querySelector(".popup__full");
 const popupImageDisplayCaption =
   popupImageDisplay.querySelector(".popup__caption");
 
-const template = document.querySelector("#card").content;
 const cards = document.querySelector(".cards");
 
 // открытие окна профиля
@@ -56,7 +53,6 @@ function savePopupProfile() {
     profileDescription.textContent = inputDescription.value;
     console.log('popupButtonSave ', profileValidator.addButtonInactive);
     closePopup(popupProfile);
-
     profileValidator.addButtonInactive();
   });
 }
@@ -127,7 +123,6 @@ function runOverlayListener(event) {
     closePopup(openedPopup);
   }
 }
-
 
 // закрытие окна через Esc
 function closeByEsc(evt) {
