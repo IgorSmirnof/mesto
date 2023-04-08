@@ -41,11 +41,10 @@ const cards = document.querySelector(".cards");
 // открытие окна профиля
 buttonEdit.addEventListener("click", function () {
   // clearInput(popupProfile, formData.errorClass, formData.inputErrorClass);
-  profileValidator.clearInput(popupProfile);
+  profileValidator.clearInput(popupProfile)
   inputName.value = profileName.textContent;
   inputDescription.value = profileDescription.textContent;
   openPopup(popupProfile);
-  profileValidator.resetValidation();
 });
 
 // сохранение нового профиля и закрытие окна
@@ -66,10 +65,38 @@ savePopupProfile();
 function createCard(item) {
   const card = new Card(item, '#card', openPopupImage);
   const cardElement = card.generateCard();
+// console.log(openPopupImage);
   return cardElement;
 }
 
+// функция: создаем карточку и вешаем события - удаление карточки, лайки и отк картинки
+// function createCard(name, link) {
+//   const cardNew = template.querySelector(".card").cloneNode(true);
+//   const cardNewImage = cardNew.querySelector(".card__image");
+//   const cardNewLike = cardNew.querySelector(".card__like");
+//   cardNewImage.src = `${link}`;
+//   cardNewImage.alt = `${name}`;
 
+//   cardNew.querySelector(".card__place").textContent = `${name}`;
+//   cardNew
+//     .querySelector(".card__basura")
+//     .addEventListener("click", () => cardNew.remove());
+//   cardNewLike.addEventListener("click", (e) =>
+//     e.target.classList.toggle("card__like_active")
+//   );
+//   cardNewImage.addEventListener("click", (e) => openPopupImage(e));
+//   return cardNew;
+// }
+
+// подгружаем данные для отк картинки на весь экран
+// function openPopupImage(e) {
+  
+//     console.log(e)
+//   popupImageDisplayFull.src = e.target.src;
+//   popupImageDisplayFull.alt = e.target.alt;
+//   popupImageDisplayCaption.textContent = e.target.alt;
+//   openPopup(popupImageDisplay);
+// }
 function openPopupImage(name, link) {
 popupImageDisplayFull.src = link;
 popupImageDisplayFull.alt = name;
@@ -87,10 +114,9 @@ collectCards(listCards);
 
 // открытие окна добавления фото
 buttonAdd.addEventListener("click", function (e) {
-  inputPlace.value = "";
-  inputLink.value = "";
+  // inputPlace.value = "";
+  // inputLink.value = "";
   openPopup(imageAdd);
-  imageAddValidator.resetValidation();
   // clearInput(imageAdd, formData.errorClass, formData.inputErrorClass);
 });
 
@@ -101,7 +127,7 @@ function savePopupImage() {
     closePopup(imageAdd);
     const newCardAdd = createCard({name:inputPlace.value, link:inputLink.value});
     cards.prepend(newCardAdd);
-    imageAddValidator.addButtonInactive();
+    cardValidator.addButtonInactive();
   });
 }
 savePopupImage();
@@ -151,37 +177,60 @@ function closePopup(el) {
   el.classList.remove("popup_opened");
 }
 
+// фунция очистки ошибки при выходе из формы не через батон-сабмит
+// function clearInput(elPopup, errorClass, inputErrorClass) {
+//   const errorInputLine = Array.from(
+//     elPopup.getElementsByClassName(inputErrorClass)
+//   );
 
+//   errorInputLine.forEach((el) => {
+//     el.form.reset();
+//     el.classList.remove(inputErrorClass);
+//   });
+
+//   const errorInputSubline = Array.from(
+//     elPopup.getElementsByClassName(errorClass)
+//   );
+//   errorInputSubline.forEach((el) => (el.textContent = ""));
+// }
+
+
+// function addButtonInactive(form) {
+//   const popupButtonSave = form.querySelector(".popup__button-save");
+//   popupButtonSave.classList.add("button_inactive");
+//   popupButtonSave.disabled = true;
+// }
+
+//-----------------------------------------
+// const formList = Array.from(document.querySelectorAll(validationValue.formSelector));
+// formList.forEach((formElement) => {
+//   const formValidator = new FormValidator(validationValue, formElement);
+//   formValidator.enableValidation();
+// });
+
+const formValidators = {}
+// Включение валидации
+const enableValidation = (validationValue) => {
+  const formList = Array.from(document.querySelectorAll(validationValue.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, validationValue)
+// получаем данные из атрибута `name` у формы
+    const formName = formElement.getAttribute('name')
+console.log(formName);
+   // вот тут в объект записываем под именем формы
+    formValidators[formName] = validator;
+   validator.enableValidation();
+    
+  });
+};
+console.log(formValidators['form-profile']);
+// enableValidation(validationValue);
+
+
+
+//-------------------------------
 const profileValidator = new FormValidator(validationValue, popupProfile);
 profileValidator.enableValidation();
 
-const imageAddValidator = new FormValidator(validationValue, imageAdd);
-imageAddValidator.enableValidation();
-
-
-
-
-
-//---------------вариант с испрользованием поля name у формы----------------
-//---------------интересный вариант тк name у каждой формы своё, нужно попробовать!----------
-//---------------код рабочий--------------------
-
-// Включение валидации
-  // const formValidators = {};
-  // const enableValidations = (validationValue) => {
-  //   const formLists = Array.from(
-  //     document.querySelectorAll(validationValue.formSelector)
-  //   );
-  //   formLists.forEach((formElement) => {
-  //     const validator = new FormValidator(validationValue, formElement);
-  //     // получаем данные из атрибута `name` у формы
-  //     const formName = formElement.getAttribute("name");
-  //     // вот тут в объект записываем под именем формы
-  //     formValidators[formName] = validator;
-  //     validator.enableValidation();
-  //   });
-  // };
-  // enableValidations(validationValue);
-  // console.log(formValidators['form-profile']);
-  // console.log(formValidators['form-image']);
-
+const cardValidator = new FormValidator(validationValue, imageAdd);
+cardValidator.enableValidation();

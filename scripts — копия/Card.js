@@ -31,11 +31,29 @@ export class Card{
 
   // для лайков, удаления и клика по картинке - отдельные методы класса
   _setEventListeners () {
-    this._buttonLike.addEventListener('click', () => _toggleLike());
+    this._toggleLike();
+    // this._deleteCard();
     this._buttonDelete.addEventListener('click', () => this._deleteCard());
-    this._image.addEventListener('click', () => _handleImageClick());
+    this._handleImageClick()
   }
-  _toggleLike(){ this._buttonLike.classList.toggle("card__like_active") };
-  _deleteCard(){ this._element.remove() };
-  _handleImageClick(){ this._handleCardClick(this._name, this._link) };
+
+  _toggleLike(){
+    this._buttonLike.addEventListener('click', () => {
+    this._buttonLike.classList.toggle("card__like_active")
+  })
+  }
+  _deleteCard(){
+    // this._buttonDelete.addEventListener('click', () => {
+      this._element.remove()
+    // })
+  }
+  _handleImageClick(){
+    this._image.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link)
+    });
+  }
+
+
 }
+
+
