@@ -46,12 +46,10 @@ class FormValidator {
   };
 
   enableValidation() {
-    const formList = Array.from(document.querySelectorAll(this._formSelector));
-    formList.forEach((formElement) => {
-      formElement.addEventListener("submit", (evt) => { evt.preventDefault(); });
+    this._formElement.addEventListener("submit", (evt) => { evt.preventDefault(); });
       this._setEventListeners();
-    });
   }
+
 
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => { return !inputElement.validity.valid; });
@@ -91,12 +89,11 @@ class FormValidator {
   }
 
   addButtonInactive() {
-    const popupButtonSave = this._formElement.querySelector(
-      this._submitButtonSelector
-    );
-    popupButtonSave.classList.add(this._inactiveButtonClass);
-    popupButtonSave.disabled = true;
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.disabled = true;
   }
+
+
 
   resetValidation() {
     this._toggleButtonState();

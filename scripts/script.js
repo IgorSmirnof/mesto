@@ -51,7 +51,7 @@ function savePopupProfile() {
     e.preventDefault();
     profileName.textContent = inputName.value;
     profileDescription.textContent = inputDescription.value;
-    console.log('popupButtonSave ', profileValidator.addButtonInactive);
+    // console.log('popupButtonSave ', profileValidator.addButtonInactive);
     closePopup(popupProfile);
     profileValidator.addButtonInactive();
   });
