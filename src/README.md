@@ -20,6 +20,7 @@
 * Java Script
 * Работа с ветками GIT
 * ООП
+* Wabpack
 
 
 **GitHub Pages**

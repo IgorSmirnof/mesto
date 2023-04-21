@@ -7,6 +7,8 @@ import { PopupWithForm } from "./components/PopupWithForm.js";
 import { PopupWithImage } from "./components/PopupWithImage.js";
 import { FormValidator } from "./components/FormValidator.js";
 
+import '../src/pages/index.css';
+
 const formData = {
   inputErrorClass: "form__input_type_error",
   errorClass: "form__input-error_active",

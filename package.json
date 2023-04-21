@@ -1,7 +1,7 @@
 {
   "name": "praktikum",
   "version": "1.0.0",
-  "description": "* Описание\r * Технологии\r * GitHub Pages",
+  "description": "* Работа №8\r * JS Webpack\r * GitHub",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
