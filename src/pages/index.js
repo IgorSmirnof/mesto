@@ -1,13 +1,13 @@
-import { listCards, validationValue, datas } from "./components/constants.js";
-import { Card } from "./components/Card.js";
-import { UserInfo } from "./components/UserInfo.js";
-import { Popup } from "./components/Popup.js";
-import { Section } from "./components/Section.js";
-import { PopupWithForm } from "./components/PopupWithForm.js";
-import { PopupWithImage } from "./components/PopupWithImage.js";
-import { FormValidator } from "./components/FormValidator.js";
+import { listCards, validationValue, datas } from "../components/constants.js";
+import { Card } from "../components/Card.js";
+import { UserInfo } from "../components/UserInfo.js";
+import { Popup } from "../components/Popup.js";
+import { Section } from "../components/Section.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { FormValidator } from "../components/FormValidator.js";
 
-import '../src/pages/index.css';
+import '../pages/index.css';
 
 const formData = {
   inputErrorClass: "form__input_type_error",
