@@ -8,20 +8,10 @@ export class Section {
   rendererItems(items) {
     items.forEach(item => {
       return this._renderer(item);
-      // console.log (item);
     });
   }
 
-  // без items в конструкторе :
-  // renderItems(items) {
-  //   items.forEach((item) => {
-  //     return this._renderer(item)
-  //   })
-  // }
-
   addItem = (element) => {
-    // console.log(element)
     this._container.prepend(element);  // в начало
   }
-  
 }

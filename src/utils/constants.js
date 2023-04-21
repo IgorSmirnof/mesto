@@ -25,16 +25,3 @@ export const listCards = [
   }
 ];
 
-export const validationValue = {
-  formSelector: ".popup__container",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button-save",
-  inactiveButtonClass: "button_inactive",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_active",
-};
-export const datas = {
-  templateSelector: "card",
-  imagePopupImage: '.image-popup__image',
-  textPopupImage: '.image-popup__title',
-};

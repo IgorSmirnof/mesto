@@ -5,29 +5,23 @@ export class PopupWithForm extends Popup {
     super(popupSelector);
     this._handlFormSubmit = handlFormSubmit;
     this._form = this._popup.querySelector(".popup__container");
-    this._inputValues = Array.from( this._form.querySelectorAll(".popup__input"));
-    this._formNew = Array.from(this._form.querySelectorAll(".popup__input"))
+    this._inputList = Array.from(this._form.querySelectorAll(".popup__input"));
   }
 
   _getInputValues() {
     this._values = {};
-    this._inputValues.forEach((input) => {
+    this._inputList.forEach((input) => {
       this._values[input.name] = input.value;
-      console.log(input.name);
     });
-    console.log(this._values);
     return this._values;
   }
 
-  // --наполнениe формы input переданными данными .bind(this)
-  setInputValues = (data) => {
-    this._inputValues.forEach((input, index) => {
-      input.value = Object.values(data)[index];
+  // --наполнениe формы input переданными данными
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      input.value = data[input.name];
     });
-    
-
-
-  };
+  }
 
   setEventListeners() {
     super.setEventListeners();
@@ -43,11 +37,3 @@ export class PopupWithForm extends Popup {
     this._form.reset();
   }
 }
-
-// getInputValues:
-// - взять инпуты из DOM
-// - создать новый пустой объект values
-// - пройтись по всем инпутам DOM и положить в values значения инпутов (value) по ключам name
-// - вернуть объект values
-
-// Потом нужно в setEventListeners в слушателе submit передать эти inputValues как аргументы для колбэка

@@ -39,7 +39,7 @@ class FormValidator {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState();
+        this.disableButton();
       });
     });
   };
@@ -54,44 +54,31 @@ class FormValidator {
     return this._inputList.some((inputElement) => { return !inputElement.validity.valid; });
   }
 
-  _toggleButtonState() {
-    if (this._hasInvalidInput(this._inputList)) {
-      this._addClassEl(this._buttonElement, this._inactiveButtonClass);
-    } else {
-      this._removeClassEl(this._buttonElement, this._inactiveButtonClass);
-      this._buttonElement.disabled = false;
-    }
-  }
+  
 
   _removeClassEl(el, classEl) { el.classList.remove(classEl); }
   _addClassEl(el, classEl) { el.classList.add(classEl); }
 
-  // фунция очистки ошибки при выходе из формы не через батон-сабмит
-  clearInput(elPopup) {
-    const errorInputLine = Array.from(
-      elPopup.getElementsByClassName(this._inputErrorClass)
-    );
 
-    errorInputLine.forEach((el) => {
-      el.form.reset();
-      el.classList.remove(this._inputErrorClass);
-    });
-
-    const errorInputSubline = Array.from(
-      elPopup.getElementsByClassName(this._errorClass)
-    );
-    errorInputSubline.forEach((el) => (el.textContent = ""));
-  }
-
-  addButtonInactive() {
+// объединины в disableButton
+  // _toggleButtonState() 
+  //  addButtonInactive() 
+  
+disableButton(){
     this._buttonElement.classList.add(this._inactiveButtonClass);
     this._buttonElement.disabled = true;
-  }
 
+  if (this._hasInvalidInput(this._inputList)) {
+        this._addClassEl(this._buttonElement, this._inactiveButtonClass);
+      } else {
+        this._removeClassEl(this._buttonElement, this._inactiveButtonClass);
+        this._buttonElement.disabled = false;
+      }
+}
 
 
   resetValidation() {
-    this._toggleButtonState();
+    this.disableButton();
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });

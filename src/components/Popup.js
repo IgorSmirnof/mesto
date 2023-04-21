@@ -25,7 +25,6 @@ export class Popup {
   //----------------------------------
   setEventListeners() {
     this._popup.addEventListener("click", (evt) => {
-      console.log(this._popup);
       if (
         evt.target.classList.contains("popup__close") ||
         evt.target.classList.contains("popup_opened")
