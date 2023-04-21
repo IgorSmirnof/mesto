@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css" />
     <!-- <script src="./scripts/validate.js" type="module"></script> -->
-    <script src="./scripts/script.js" type="module"></script>
+    <script src="./index.js" type="module"></script>
     <!-- defer -->
     <title>Russia Mesto</title>
   </head>
@@ -20,11 +20,11 @@
     </header>
     <main class="main">
       <section class="profile" aria-label="Информация о пользователе.">
-        <img
-          src='<%= require("./images/jacob.jpg")%>'
-          alt="Фото пользователя."
-          class="profile__avatar"
-        />
+        <img src="./images/jacob.jpg" alt="Фото пользователя."
+          class="profile__avatar" />
+          <!-- <img src='<%= require("./images/jacob.jpg")%>' alt="Фото пользователя."
+          class="profile__avatar" /> -->
+
         <div class="profile__user">
           <div class="profile__title">
             <h1 class="profile__name">Евгений Кустофф</h1>
@@ -56,10 +56,12 @@
         <button type="button" class="popup__close button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
 
-        <input id="input-name" class="popup__input popup__input_field_name" minlength="2" maxlength="40" required placeholder = " Введите имя"/>
+        <!-- <input id="input-name" class="popup__input popup__input_field_name" minlength="2" maxlength="40" required placeholder = " Введите имя" name = "popup__input_field_name"/> -->
+        <input id="input-name" class="popup__input popup__input_field_name" minlength="2" maxlength="40" required placeholder = " Введите имя" name = "name"/>
         <span class="input-name-error input-error"></span>
 
-        <input id="input-description" class="popup__input popup__input_field_description" minlength="2" maxlength="200" required placeholder = " Вид деятельности"/>
+        <input id="input-description" class="popup__input popup__input_field_description" minlength="2" maxlength="200" required placeholder = " Вид деятельности" name="description" />
+        <!-- popup__input_field_description -->
         <span class="input-description-error input-error"></span>
 
         <button class="popup__button-save button">Сохранить</button>
@@ -70,9 +72,11 @@
       <form class="popup__container" autocomplete = "off" name = "form-image">
         <button type="button" class="popup__close button"></button>
         <h2 class="popup__title">Новое место</h2>
-        <input id="input-place" class="popup__input popup__input_field_place"  minlength="2" maxlength="30" required placeholder = " Название" />
+        <input id="input-place" class="popup__input popup__input_field_place"  minlength="2" maxlength="30" required placeholder = " Название" name="place" />
+        <!-- popup__input_field_place -->
         <span class="input-place-error input-error"></span>
-        <input id="input-link" class="popup__input popup__input_field_link" type = 'url' required placeholder = " Ссылка на картинку"/>
+        <input id="input-link" class="popup__input popup__input_field_link" type = 'url' required placeholder = " Ссылка на картинку" name="link" />
+        <!-- popup__input_field_link -->
         <span class="input-link-error input-error"></span>
         <button class="popup__button-save button">Сохранить</button>
       </form>

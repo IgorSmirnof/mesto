@@ -1,10 +1,11 @@
+// import { Popup } from "./Popup";
 export class Card {
   constructor(data, templateSelector, handleCardClick) {
-    this._templateSelector = templateSelector;
-    this._data = data;
+    this._templateSelector = templateSelector; // селекор клише
+    this._data = data; //  данныe о карточке
     this._name = data.name;
     this._link = data.link;
-    this._handleCardClick = handleCardClick;
+    this._handleCardClick = handleCardClick; // callback открытия попап с картинкой
   }
 
   _getTemplate() {
@@ -17,15 +18,15 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._place = this._element.querySelector(".card__place");
     this._image = this._element.querySelector(".card__image");
     this._buttonLike = this._element.querySelector(".card__like");
     this._buttonDelete = this._element.querySelector(".card__basura");
-    // console.log(this._buttonLike);
-    this._setEventListeners();
+    this._image.src = this._link;
+    this._image.alt = this._name;
+    this._place.textContent = this._name;
 
-    this._image.setAttribute("src", `${this._link}`);
-    this._image.setAttribute("alt", `${this._name}`);
-    this._element.querySelector(".card__place").textContent = `${this._name}`;
+    this._setEventListeners();
     return this._element;
   }
 
@@ -34,7 +35,8 @@ export class Card {
     this._buttonLike.addEventListener("click", () => this._toggleLike());
     this._buttonDelete.addEventListener("click", () => this._deleteCard());
     this._image.addEventListener("click", () => {
-      this._handleCardClick(this._name, this._link);
+      console.log(this._name);
+      this._handleCardClick({ name: this._name, link: this._link });
     });
   }
 
@@ -43,7 +45,6 @@ export class Card {
   }
   _deleteCard() {
     this._element.remove();
+    this._element = null;
   }
 }
-
-

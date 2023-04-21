@@ -15,7 +15,6 @@ class FormValidator {
 
   _showInputError = (inputElement, errorMessage) => {
     const errorElement = this._formElement.querySelector( `.${inputElement.id}-error` );
-    // console.log(formElement, errorElement, this._errorClass);
     this._addClassEl(inputElement, this._inputErrorClass);
     errorElement.textContent = errorMessage;
     this._addClassEl(errorElement, this._errorClass);
@@ -64,12 +63,8 @@ class FormValidator {
     }
   }
 
-  _removeClassEl(el, classEl) {
-    el.classList.remove(classEl);
-  }
-  _addClassEl(el, classEl) {
-    el.classList.add(classEl);
-  }
+  _removeClassEl(el, classEl) { el.classList.remove(classEl); }
+  _addClassEl(el, classEl) { el.classList.add(classEl); }
 
   // фунция очистки ошибки при выходе из формы не через батон-сабмит
   clearInput(elPopup) {
