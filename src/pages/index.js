@@ -45,6 +45,7 @@ const userInfoPopup = new PopupWithForm(".popup_profile", {
 buttonEdit.addEventListener("click", () => {
   userInfoPopup.setInputValues(userInfo.getUserInfo());
   userInfoPopup.open();
+  formValidators["form-profile"].resetValidation();
 });
 
 // ----добавлениe карточки--- popup_image_add
@@ -59,6 +60,7 @@ imagePopup.setEventListeners();
 userInfoPopup.setEventListeners();
 
 buttonAdd.addEventListener("click", () => {
+  formValidators["form-image"].resetValidation();
   newCardPopup.open();
   // imageAddValidator.disableButton();
 });
