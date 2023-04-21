@@ -44,7 +44,6 @@ const userInfo = new UserInfo({
   name: ".profile__name",
   description: ".profile__description",
 });
-console.log(userInfo)
 
 const profileValidator = new FormValidator(validationValue, popupProfile);
 profileValidator.enableValidation();
