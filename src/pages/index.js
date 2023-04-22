@@ -79,10 +79,7 @@ const enableValidation = (validationValue) => {
   const formList = Array.from(document.querySelectorAll(validationValue.formSelector))
   formList.forEach((formElement) => {
     const validator = new FormValidator(validationValue, formElement)
-// получаем данные из атрибута `name` у формы
     const formName = formElement.getAttribute('name')
-
-   // вот тут в объект записываем под именем формы
     formValidators[formName] = validator;
     validator.enableValidation();
   });
