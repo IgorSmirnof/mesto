@@ -10,14 +10,14 @@ import { FormValidator } from "../components/FormValidator.js";
 
 import { buttonEdit, buttonAdd, validationValue, popupAvatar, buttonAvatar } from "../utils/selectors.js";
 
-let userCurrentId
+let userCurrentId;
 const api = new Api(apiConfig);
 Promise.all([api.getUserInfoApi(), api.getInitialCards()])
   .then(([user, data]) => {
-      // userCurrentId = user._id;
-      console.log(user.json);
-      // userInfo.setUserInfo(user);
-      // userInfo.setUserAvatar(user);
+      userCurrentId = user._id;
+      console.log(user._id,data);
+      userInfo.setUserInfo(user);
+      userInfo.setUserAvatar(user);
       cardlist.rendererItems(data);
         }
       )
@@ -29,7 +29,7 @@ Promise.all([api.getUserInfoApi(), api.getInitialCards()])
 
 // api.setUserInfoApi({ name:'CruchkInn', description: 'profiThrolle'})
 
-//---------------------------------------------
+//---------------test---------------------------
 // api.deleteCardApi("6447fc88ab8188008587157b")
 // api.sendLike("64478bdd2e0f4800274ee9d0");
 

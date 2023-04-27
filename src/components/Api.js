@@ -45,14 +45,16 @@ export class Api {
   }
 
   //получить данные пользователя с сервера
-  getUserInfoApi() {
-    fetch(`${this._url}/users/me`, {
+   getUserInfoApi() {
+    return fetch(`${this._url}/users/me`, {
       method: "GET",
       headers: {
         authorization: this._authorization,
       },
-    })
+    }).then(res => this._checkResponse(res))
   }
+
+
   // .then((user) => { return user.json() }).then(((info) => { return console.log(info) }))
     // .then(((info) => { return console.log(info)}))
 
@@ -117,5 +119,11 @@ export class Api {
     })
   }
   //---------проверка /вывод ошибки----------
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Пердоньте Монсеньёр, темпранилья теплая! Ошибка: ${res.status}`);
+  }
 }
 
