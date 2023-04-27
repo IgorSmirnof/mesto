@@ -1,10 +1,12 @@
-export { popupProfile, imageAdd, buttonEdit, buttonAdd } ; 
+export { popupProfile, imageAdd, buttonEdit, buttonAdd, popupAvatar, buttonAvatar } ; 
 const body = document.querySelector(".body-root");
 const profile = document.querySelector(".profile");
 const popupProfile = document.querySelector(".popup_profile");
 const imageAdd = body.querySelector(".popup_image_add");
 const buttonEdit = profile.querySelector(".profile__button-edit");
 const buttonAdd = profile.querySelector(".profile__button-add");
+const buttonAvatar = document.querySelector(".avatar");
+const popupAvatar = document.querySelector(".popup_avatar");
 
 export const validationValue = {
   formSelector: ".popup__container",

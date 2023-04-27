@@ -1,11 +1,16 @@
 // import { Popup } from "./Popup";
 export class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor({ data, templateSelector, handleCardClick, setLikeQty, setDislikeQty, deleteCard }) {
     this._templateSelector = templateSelector; // селекор клише
     this._data = data; //  данныe о карточке
     this._name = data.name;
     this._link = data.link;
     this._handleCardClick = handleCardClick; // callback открытия попап с картинкой
+    this._likeQty = data.likes.length;
+    this._cardId = data._id;
+    this.setLikeQty = setLikeQty;
+    this.setDislikeQty = setDislikeQty;
+    this.deleteCard = deleteCard;
   }
 
   _getTemplate() {
@@ -27,6 +32,10 @@ export class Card {
     this._place.textContent = this._name;
 
     this._setEventListeners();
+
+    // устанавливаю лайки карточкам:
+    this._element.querySelector(".card__like-qty").innerText = this._likeQty;
+
     return this._element;
   }
 
@@ -39,11 +48,27 @@ export class Card {
     });
   }
 
+  likedMyCard() {
+    return this._dataLikes.some(like => like._id === this._userId)
+  };
+  renderLikes() {
+    
+  }
   _toggleLike() {
     this._buttonLike.classList.toggle("card__like_active");
+    console.log(this._cardId);
+    // if (likedMyCard) {
+    //   this.setLikeQty(this._cardId);
+    // } else {
+    //   this.setDislikeQty(this._cardId);
+    // }
   }
   _deleteCard() {
     this._element.remove();
     this._element = null;
   }
+
+  // setLikeQty() {
+    
+  // }
 }
