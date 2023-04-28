@@ -1,4 +1,4 @@
-export { popupProfile, imageAdd, buttonEdit, buttonAdd, popupAvatar, buttonAvatar } ; 
+export { popupProfile, imageAdd, buttonEdit, buttonAdd, popupAvatar, buttonAvatar, deleteCard } ; 
 const body = document.querySelector(".body-root");
 const profile = document.querySelector(".profile");
 const popupProfile = document.querySelector(".popup_profile");
@@ -7,6 +7,7 @@ const buttonEdit = profile.querySelector(".profile__button-edit");
 const buttonAdd = profile.querySelector(".profile__button-add");
 const buttonAvatar = document.querySelector(".avatar");
 const popupAvatar = document.querySelector(".popup_avatar");
+const deleteCard = document.querySelector(".popup_delete");
 
 export const validationValue = {
   formSelector: ".popup__container",

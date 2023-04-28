@@ -1,6 +1,6 @@
 // import { Popup } from "./Popup";
 export class Card {
-  constructor({ data, templateSelector, handleCardClick, setLikeQty, setDislikeQty, deleteCard }) {
+  constructor({ data, userId, templateSelector, handleCardClick, setLikeQty, setDislikeQty, handleDeleteCard }) {
     this._templateSelector = templateSelector; // селекор клише
     this._data = data; //  данныe о карточке
     this._name = data.name;
@@ -10,7 +10,10 @@ export class Card {
     this._cardId = data._id;
     this.setLikeQty = setLikeQty;
     this.setDislikeQty = setDislikeQty;
-    this.deleteCard = deleteCard;
+    this.handleDeleteCard = handleDeleteCard;
+    this.cardId = data._id;
+    this._userIdOwner = data.owner._id;
+    this.userId =  userId;
   }
 
   _getTemplate() {
@@ -36,13 +39,19 @@ export class Card {
     // устанавливаю лайки карточкам:
     this._element.querySelector(".card__like-qty").innerText = this._likeQty;
 
+    // проверить моя ли карточка - нет -> удалить корзину
+    if (this.userId !== this._userIdOwner) {
+      // console.log(this.userId, this._userIdOwner)
+      this._buttonDelete.remove();
+    }
     return this._element;
   }
 
   // для лайков, удаления и клика по картинке - отдельные методы класса
   _setEventListeners() {
     this._buttonLike.addEventListener("click", () => this._toggleLike());
-    this._buttonDelete.addEventListener("click", () => this._deleteCard());
+    // this._buttonDelete.addEventListener("click", () => this._deleteCard());
+    this._buttonDelete.addEventListener("click", () => this.handleDeleteCard(this, this.cardId));
     this._image.addEventListener("click", () => {
       this._handleCardClick({ name: this._name, link: this._link });
     });

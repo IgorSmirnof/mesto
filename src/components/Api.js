@@ -97,11 +97,15 @@ export class Api {
   }
 
   deleteCardApi(dataId) {
-    fetch(`${this._url}/cards/${dataId}`, {
+    return fetch(`${this._url}/cards/${dataId}`, {
       method: "DELETE",
       headers: {
         authorization: this._authorization,
       },
+    })
+    .catch((err) => alert(err))
+    .finally(() => {
+      // popupFormDelete.renderPreloader(false);
     })
   }
 
