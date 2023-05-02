@@ -37,7 +37,7 @@ export class Api {
 
   //передать данные пользователя на сервер
   setUserInfoApi(data) {
-    fetch(`${this._url}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: {
         authorization: this._authorization,

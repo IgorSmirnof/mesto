@@ -12,10 +12,9 @@ export class PopupSubmit extends Popup {
     super.open();
     this.id = idCard;
     this.card = cardElement;
-    console.log("ждатель ", idCard, cardElement);
   }
 
-  //Функция отображения Preloader //  .renderPreloader(true, 'Удаление...');
+  // Preloader //  .renderPreloader(true/false, 'Удаление ...');
   renderPreloader(isLoading, displayText) {
     if (!this._buttonSubmit) return;
     if (isLoading) {

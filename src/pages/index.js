@@ -16,7 +16,7 @@ const api = new Api(apiConfig);
 Promise.all([api.getUserInfoApi(), api.getInitialCards()])
   .then(([user, data]) => {
       userCurrentId = user._id;
-      console.log(user, data);
+      // console.log(user, data);
       userInfo.setUserInfo(user);
       userInfo.setUserAvatar(user);
       cardlist.rendererItems(data, userCurrentId);
@@ -51,18 +51,21 @@ const createCard = (data, user) => {
       api.sendLike(data._id)
       .then((res) => {
         card.renderLikes(res);
-      })},
+      })
+      .then(() => location.reload())
+    },
     setDislikeQty: () => {
       api.deleteLike(data._id)
       .then((res) => {
       card.renderLikes(res);
-    }) }, 
+      })
+      .then(() => location.reload())
+    }, 
     handleDeleteCard: (cardID, cardElement) => {
       popupFormDelete.open(cardID, cardElement);
     },
   });
 
-  // console.log(data._id)
   return card.generateCard();
 };
 
@@ -82,7 +85,7 @@ const popupFormDelete = new PopupSubmit('.popup_delete', {
     api.deleteCardApi(id)
       .then(() => {
       card.deleteCard();
-      console.log(id, card); //          <-------------<<
+      // console.log(id, card); //          <-------------<<
       popupFormDelete.close();
     })
     .catch((err) => console.log('error delete :' + (err)))
@@ -99,8 +102,8 @@ const popupFormDelete = new PopupSubmit('.popup_delete', {
 const userInfoPopup = new PopupWithForm(".popup_profile", {
   handlFormSubmit: (data) => {
     // userInfo.setUserInfo(data);
-    console.log(data)
     api.setUserInfoApi(data)
+    .then(() => location.reload())
   },
 });
 
@@ -116,8 +119,7 @@ const newCardPopup = new PopupWithForm(".popup_image_add", {
   handlFormSubmit: ({ place, link }) => {
     // cardlist.addItem(createCard({ name: place, link: link }));
     api.addNewCards({ name: place, link: link })
-    // .finally(console.log('close', cardlist), )
-    
+    .then(() => location.reload())
   },
 });
 
@@ -140,7 +142,8 @@ const newAvatar = new PopupWithForm(".popup_avatar", {
         userInfo.setUserAvatar(data);
         newAvatar.close();
       }
-    )
+      )
+      .then(() => location.reload())
   },
 });
 
