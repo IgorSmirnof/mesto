@@ -40,7 +40,7 @@
 .input-error{color:red;font-size:12px;font-weight:400;height:15px;line-height:10px;margin:4px 0 5px;padding:0}
 .button{color:#fff;transition:opacity .3s ease-out}.button:hover{cursor:pointer;opacity:.75}
 .button_inactive{background:#e5e5e5;border:1px solid rgba(0,0,0,.2);color:#b8b8b8;pointer-events:none}
-.avatar{background-image:url(a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat;height:120px;margin:0;padding:0;position:relative;width:120px}
+.avatar{background-image:url(ae1a976ddb506239e9f0.svg);background-position:50%;background-repeat:no-repeat;height:120px;margin:0;padding:0;position:relative;width:120px}
 .avatar__img{border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;position:relative;transition:opacity .3s linear;width:120px}.avatar__img:hover{cursor:pointer;opacity:.2}
 
 
