@@ -19,115 +19,103 @@ export class Api {
         }
       })
       .then((result) => {
-        // console.log(result[17].likes.length);
-        // console.log(result);
         return result;
       });
   }
 
   // другие методы работы с API
 
-  // 3. Редактирование профиля:
+  //получить данные пользователя с сервера
+  getUserInfoApi() {
+    return fetch(`${this._url}/users/me`, {
+      method: "GET",
+      headers: {
+        authorization: this._authorization,
+      },
+    }).then((res) => this._checkResponse(res));
+  }
 
   //передать данные пользователя на сервер
-  setUserInfoApi( data ) {
+  setUserInfoApi(data) {
     fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: {
         authorization: this._authorization,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         name: data.name,
         about: data.description,
       }),
-    })
+    }).then((res) => this._checkResponse(res));
   }
-
-  //получить данные пользователя с сервера
-   getUserInfoApi() {
-    return fetch(`${this._url}/users/me`, {
-      method: "GET",
-      headers: {
-        authorization: this._authorization,
-      },
-    }).then(res => this._checkResponse(res))
-  }
-
-
-  // .then((user) => { return user.json() }).then(((info) => { return console.log(info) }))
-    // .then(((info) => { return console.log(info)}))
-
-  //получить данные пользователя на сервер
 
   //добавление новой карточки на сервер
   addNewCards(data) {
-    fetch(`${this._url}/cards`, {
+    return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: {
         authorization: this._authorization,
         "Content-Type": "application/json",
-      },body: JSON.stringify({ 
+      },
+      body: JSON.stringify({
         name: data.name,
         link: data.link,
       }),
-    })
+    }).then((res) => this._checkResponse(res));
   }
-
-
-  //удаление карточки с сервера
 
   //передача лайка на сервер
   sendLike(dataId) {
-    fetch(`${this._url}/cards/${dataId}/likes`, {
+    return fetch(`${this._url}/cards/${dataId}/likes`, {
       method: "PUT",
       headers: {
         authorization: this._authorization,
       },
-    })
+    }).then((res) => this._checkResponse(res));
   }
+
   //удаление лайка на сервере
   deleteLike(dataId) {
-    fetch(`${this._url}/cards/${dataId}/likes`, {
+    return fetch(`${this._url}/cards/${dataId}/likes`, {
       method: "DELETE",
       headers: {
         authorization: this._authorization,
       },
-    })
+    }).then((res) => this._checkResponse(res));
   }
 
+  //удаление карточки с сервера
   deleteCardApi(dataId) {
     return fetch(`${this._url}/cards/${dataId}`, {
       method: "DELETE",
       headers: {
         authorization: this._authorization,
       },
-    })
-    .catch((err) => alert(err))
-    .finally(() => {
-      // popupFormDelete.renderPreloader(false);
-    })
+    }).then((res) => this._checkResponse(res));
   }
 
   //------- смена автарки ------------
-  setUserAvatar( data ) {
-    fetch(`${this._url}/users/me/avatar`, {
+  setUserAvatar(data) {
+    return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: this._authorization,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
-        avatar: data.avatar
+      body: JSON.stringify({
+        avatar: data.avatar,
       }),
-    })
+    }).then((res) => this._checkResponse(res));
   }
+
   //---------проверка /вывод ошибки----------
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Пердоньте Монсеньёр, темпранилья теплая! Ошибка: ${res.status}`);
+    return Promise.reject(
+      `Пердоньте Монсеньёр, темпранийя еста финита! Ошибка: ${res.status}`
+    );
   }
 }
-

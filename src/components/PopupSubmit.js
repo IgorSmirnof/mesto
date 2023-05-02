@@ -1,23 +1,24 @@
-import { Popup }  from "./Popup.js";
+import { Popup } from "./Popup.js";
 
 export class PopupSubmit extends Popup {
   constructor(selectorPopup, { handleSubmit }) {
     super(selectorPopup);
     this._handleSubmit = handleSubmit;
-    this._buttonSubmit = this._popup.querySelector('.popup__button-save');
+    this._buttonSubmit = this._popup.querySelector(".popup__button-save");
   }
 
-  // открытия Popup и получения данных о карточке 
+  // открытия Popup и получения данных о карточке
   open(cardElement, idCard) {
     super.open();
     this.id = idCard;
     this.card = cardElement;
+    console.log("ждатель ", idCard, cardElement);
   }
 
   //Функция отображения Preloader //  .renderPreloader(true, 'Удаление...');
-  renderPreloader(loading, displayText) {
+  renderPreloader(isLoading, displayText) {
     if (!this._buttonSubmit) return;
-    if (loading) {
+    if (isLoading) {
       this.defaulText = this._buttonSubmit.textContent;
       this._buttonSubmit.textContent = displayText;
     } else {
@@ -25,15 +26,12 @@ export class PopupSubmit extends Popup {
     }
   }
 
-
-  // ждатель клика 
+  // ждатель клика
   setEventListeners() {
     super.setEventListeners();
-    this._buttonSubmit.addEventListener('click', () => {
-      console.log('ждатель клика');
+    this._buttonSubmit.addEventListener("click", () => {
+      // console.log('ждатель клика ', this.card);
       this._handleSubmit(this.id, this.card);
-    })
+    });
   }
 }
-
-  

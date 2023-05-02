@@ -9,14 +9,14 @@ import { PopupWithImage } from "../components/PopupWithImage.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { PopupSubmit } from "../components/PopupSubmit.js";
 
-import { buttonEdit, buttonAdd, validationValue, popupAvatar, buttonAvatar, deleteCard } from "../utils/selectors.js";
+import { buttonEdit, buttonAdd, validationValue, popupAvatar, buttonAvatar, popupDeleteCard } from "../utils/selectors.js";
 
 let userCurrentId;
 const api = new Api(apiConfig);
 Promise.all([api.getUserInfoApi(), api.getInitialCards()])
   .then(([user, data]) => {
       userCurrentId = user._id;
-      console.log(user._id, data);
+      console.log(user, data);
       userInfo.setUserInfo(user);
       userInfo.setUserAvatar(user);
       cardlist.rendererItems(data, userCurrentId);
@@ -40,26 +40,31 @@ const userInfo = new UserInfo({
   avatar: ".avatar"
 });
 
-
+//({ data, userId, templateSelector, handleCardClick, setLikeQty, setDislikeQty, handleDeleteCard })
 
 const createCard = (data, user) => {
   const card = new Card({
     data: data, userId: user, templateSelector: "#card",
-    handleCardClick: () => imagePopup.open(data),   
-    setLikeQty: () => api.sendLike(data._id),  
-    setDislikeQty: () => api.setDislikeQty(data._id), 
-    handleDeleteCard: () => { popupFormDelete.open(data, data._id) },
-    
-    // deleteCard: () => api.deleteLike(data._id),
-    // .then((res) => console.log(res))
-    
+    // handleDeleteCard: (data, data._id) => { popupFormDelete.open(data, data._id) },
+    handleCardClick: () => { imagePopup.open(data) },   
+    setLikeQty: () => {
+      api.sendLike(data._id)
+      .then((res) => {
+        card.renderLikes(res);
+      })},
+    setDislikeQty: () => {
+      api.deleteLike(data._id)
+      .then((res) => {
+      card.renderLikes(res);
+    }) }, 
+    handleDeleteCard: (cardID, cardElement) => {
+      popupFormDelete.open(cardID, cardElement);
+    },
   });
-  // console.log(data._id)    console.log(data)
-    console.log(data, data._id)
-    // console.log(data._id)
+
+  // console.log(data._id)
   return card.generateCard();
 };
-
 
 const cardlist = new Section(
   {
@@ -69,37 +74,33 @@ const cardlist = new Section(
   },
   ".cards"
 );
+
 // удаление карточки  ------------------------------------------------------------
-// api.getUserInfoApi()
-//   .then((user) => {
-//       userCurrentId = user._id;
-//       console.log(user._id);
-// })
 const popupFormDelete = new PopupSubmit('.popup_delete', {
   handleSubmit: (id, card) => {
-    console.log(id, card);
     popupFormDelete.renderPreloader(true, 'Удаление ...');
-
     api.deleteCardApi(id)
-    .then(() => {
+      .then(() => {
       card.deleteCard();
+      console.log(id, card); //          <-------------<<
       popupFormDelete.close();
     })
-    .catch((err) => alert(err))
+    .catch((err) => console.log('error delete :' + (err)))
     .finally(() => {
-      // popupFormDelete.renderPreloader(false);
+      popupFormDelete.renderPreloader(false);
     })
   }
 })
 
-popupFormDelete.setEventListeners();
 //----------end of удаление карточки ---------------------
 
 
 // изм userInfo
 const userInfoPopup = new PopupWithForm(".popup_profile", {
   handlFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
+    // userInfo.setUserInfo(data);
+    console.log(data)
+    api.setUserInfoApi(data)
   },
 });
 
@@ -115,6 +116,7 @@ const newCardPopup = new PopupWithForm(".popup_image_add", {
   handlFormSubmit: ({ place, link }) => {
     // cardlist.addItem(createCard({ name: place, link: link }));
     api.addNewCards({ name: place, link: link })
+    // .finally(console.log('close', cardlist), )
     
   },
 });
@@ -151,6 +153,7 @@ buttonAvatar.addEventListener("click", () => {
 imagePopup.setEventListeners();
 userInfoPopup.setEventListeners();
 newCardPopup.setEventListeners();
+popupFormDelete.setEventListeners();
 newAvatar.setEventListeners();
 
 // buttonEdit.addEventListener("click", () => {

@@ -12,6 +12,7 @@ export class Section {
   }
 
   addItem = (element) => {
-    this._container.prepend(element);  // в начало
+    // this._container.prepend(element);  // в начало pc
+    this._container.append(element);  // в начало sql
   }
 }
