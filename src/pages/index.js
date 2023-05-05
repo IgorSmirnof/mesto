@@ -95,8 +95,8 @@ const popupFormDelete = new PopupSubmit(".popup_delete", {
 // изм userInfo
 const userInfoPopup = new PopupWithForm(".popup_profile", {
   handlFormSubmit: (data) => {
-    newCardPopup.renderPreloader(true, "Сохранение ...");
-    api
+    // newCardPopup.renderPreloader(true, "Сохранение ...");
+    return api
       .setUserInfoApi(data)
       .then(() => location.reload())
       .catch((err) => console.log(err));
@@ -113,9 +113,9 @@ buttonEdit.addEventListener("click", () => {
 // ----добавлениe карточки--- popup_image_add
 const newCardPopup = new PopupWithForm(".popup_image_add", {
   handlFormSubmit: ({ place, link }) => {
-    newCardPopup.renderPreloader(true, "Сохранение ...");
+    // newCardPopup.renderPreloader(true, "Сохранение ...");
 
-    api
+    return api
       .addNewCards({ name: place, link: link })
       .then((newCard) => {
         cardlist.addItemPrepend(createCard(newCard, userCurrentId));
@@ -135,8 +135,8 @@ buttonAdd.addEventListener("click", () => {
 //-----открытиe редактировапния аватарки
 const newAvatar = new PopupWithForm(".popup_avatar", {
   handlFormSubmit: (data) => {
-    newCardPopup.renderPreloader(true, "Сохранение ...");
-    api
+    // newCardPopup.renderPreloader(true, "Сохранение ...");
+    return api
       .setUserAvatar(data)
       .then((data) => {
         userInfo.setUserAvatar(data);

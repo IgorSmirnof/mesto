@@ -24,32 +24,28 @@ export class PopupWithForm extends Popup {
     });
   }
 
-  setEventListeners() {
-    super.setEventListeners();
-    this._form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      this._handlFormSubmit(this._getInputValues());
-      this.close();
-    });
-  }
-
-
   // setEventListeners() {
   //   super.setEventListeners();
-  
-  //   this._form.addEventListener('submit', () => {
-    
-  //     const initialText = this._buttonSubmit.textContent;  // перед запросом сохраняем изначальный текст кнопки
-  //     console.log(initialText);
-  //     this._buttonSubmit.textContent = 'Сохранение...'; // меняем его, чтобы показать пользователю ожидание
-  //     this._handlFormSubmit(this._getInputValues())
-  //       .then(() => this.close()) // закрывается попап в `then`
-  //       .finally(() => {
-  //         this._buttonSubmit.textContent = initialText;
-  //       }) // в любом случае меняется текст кнопки обратно на начальный в `finally`
+  //   this._form.addEventListener("submit", (event) => {
+  //     event.preventDefault();
+  //     this._handlFormSubmit(this._getInputValues());
+  //     this.close();
   //   });
   // }
 
+  setEventListeners() {
+    super.setEventListeners();
+
+    this._form.addEventListener("submit", () => {
+      const initialText = this._buttonSubmit.textContent;
+      this._buttonSubmit.textContent = "Сохранение ...";
+      this._handlFormSubmit(this._getInputValues())
+        .then(() => this.close())
+        .finally(() => {
+          this._buttonSubmit.textContent = initialText;
+        });
+    });
+  }
 
   close() {
     super.close();
@@ -62,10 +58,9 @@ export class PopupWithForm extends Popup {
     if (isLoading) {
       this.defaulText = this._buttonSubmit.textContent;
       this._buttonSubmit.textContent = displayText;
-    } else {
-      this._buttonSubmit.textContent = this.defaulText;
     }
+    // else {
+    //   this._buttonSubmit.textContent = this.defaulText;
+    // }
   }
-
 }
-
