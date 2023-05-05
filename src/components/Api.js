@@ -13,14 +13,7 @@ export class Api {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then((result) => {
-        return result;
-      });
+    .then((res) => this._checkResponse(res));
   }
 
   // другие методы работы с API
@@ -115,7 +108,7 @@ export class Api {
       return res.json();
     }
     return Promise.reject(
-      `Пердоньте Монсеньёр, темпранийя еста финита! Ошибка: ${res.status}`
+      `Пердоньте Монсеньёр: есть Ошибка: ${res.status}`
     );
   }
 }

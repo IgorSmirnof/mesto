@@ -16,12 +16,13 @@ export class Card {
     this._handleCardClick = handleCardClick; // callback открытия попап с картинкой
     this._likes = data.likes;
     this._likeQty = data.likes.length;
-    this._cardId = data._id;
+    this.cardId = data._id;
     this.setLikeQty = setLikeQty;
     this.setDislikeQty = setDislikeQty;
     this._handleDeleteCard = handleDeleteCard;
     this._userIdOwner = data.owner._id;
     this.userId = userId;
+    this._counter = 0;
   }
 
   _getTemplate() {
@@ -43,7 +44,6 @@ export class Card {
     this._place.textContent = this._name;
     this._elementCardLikeQty = this.element.querySelector(".card__like-qty");
     this.renderLikes(this._data);
-    this._setEventListeners();
 
     // устанавливаю лайки карточкам:
     this._elementCardLikeQty.innerText = this._likeQty;
@@ -52,33 +52,39 @@ export class Card {
     if (this.userId !== this._userIdOwner) {
       this._buttonDelete.remove();
     }
+    this._setEventListeners();
     return this.element;
   }
 
   // для лайков, удаления и клика по картинке - отдельные методы класса
   _setEventListeners() {
-    this._buttonLike.addEventListener("click", () => this._toggleLike());
+    this._buttonLike.addEventListener("click", () => {
+      this.toggleLike();
+    });
     // this._buttonDelete.addEventListener("click", () => this._deleteCard());
     this._buttonDelete.addEventListener("click", () =>
-      this._handleDeleteCard(this, this._cardId)
+      this._handleDeleteCard(this, this.cardId)
     );
     this._image.addEventListener("click", () => {
       this._handleCardClick({ name: this._name, link: this._link });
     });
   }
 
-  //мои лайки
+  //мои лайки на карточке
   isMylikeCard() {
-    let myLikes = this._likes.some((elem) => elem._id === this.userId);
-    return myLikes;
+    return this._likes.some((elem) => elem._id === this.userId);
   }
 
-  renderLikes() {
-    if (this._likeQty === 0) {
+  renderLikes(cardID) {
+    this._likesQTY = cardID.likes.length;
+    this._likes = cardID.likes;
+
+    if (this._likesQTY === 0) {
       this._elementCardLikeQty.textContent = "0";
     } else {
-      this._elementCardLikeQty.textContent = this._likeQty;
+      this._elementCardLikeQty.textContent = this._likesQTY;
     }
+
     if (this.isMylikeCard()) {
       this._buttonLike.classList.add("card__like_active");
     } else {
@@ -86,16 +92,15 @@ export class Card {
     }
   }
 
-
-
-  _toggleLike() {
+  toggleLike() {
     // this._buttonLike.classList.toggle("card__like_active");
     if (this.isMylikeCard()) {
-      this.setDislikeQty(this._cardId);
+      this.setDislikeQty(this.cardId);
     } else {
-      this.setLikeQty(this._cardId);
+      this.setLikeQty(this.cardId);
     }
   }
+
   deleteCard() {
     this.element.remove();
     this.element = null;
