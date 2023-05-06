@@ -99,6 +99,7 @@ const userInfoPopup = new PopupWithForm(".popup_profile", {
     return api
       .setUserInfoApi(data)
       .then(() => location.reload())
+      .then(() => userInfoPopup.close())
       .catch((err) => console.log(err));
   },
 });

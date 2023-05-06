@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href='<%=require("./images/favicon.jpg")%>'>
     <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
     <!-- <script src="./scripts/validate.js" type="module"></script> -->
     <!-- <script src="./index.js" type="module"></script> -->
@@ -84,7 +85,7 @@
       <form class="popup__container" autocomplete = "off" name = "form-avatar">
         <button type="button" class="popup__close button"></button>
         <h2 class="popup__title">Обновить аватар</h2>
-        <input id="input-avatar" class="popup__input popup__input_avatar" minlength="2" maxlength="40" required placeholder = " Введите ссылку на изображение" type = 'url' name = "avatar"/>
+        <input id="input-avatar" class="popup__input popup__input_avatar" minlength="2" required placeholder = " Введите ссылку на изображение" type = 'url' name = "avatar"/>
         <span class="input-avatar-error input-error"></span>
         <button class="popup__button-save button">Сохранить</button>
       </form>
