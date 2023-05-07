@@ -90,25 +90,23 @@ const popupFormDelete = new PopupSubmit(".popup_delete", {
   },
 });
 
-//----------end of удаление карточки ---------------------
-
 // изм userInfo
 const userInfoPopup = new PopupWithForm(".popup_profile", {
   handlFormSubmit: (data) => {
     // newCardPopup.renderPreloader(true, "Сохранение ...");
     return api
-      .setUserInfoApi(data)
-      .then(() => location.reload())
-      .then(() => userInfoPopup.close())
-      .catch((err) => console.log(err));
+      .setUserInfoApi(data)    
+      .then(() => userInfo.setUserInfo(data))   // *  <--------------<< 
+      .catch((err) => console.log(err))
+      .finally(() => newCardPopup.renderPreloader(false));
   },
 });
 
 //-----открытиe редактирования профиля
 buttonEdit.addEventListener("click", () => {
+  formValidators["form-profile"].resetValidation();
   userInfoPopup.setInputValues(userInfo.getUserInfo());
   userInfoPopup.open();
-  formValidators["form-profile"].resetValidation();
 });
 
 // ----добавлениe карточки--- popup_image_add
