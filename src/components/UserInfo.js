@@ -14,7 +14,8 @@ export class UserInfo {
 
   setUserInfo(data) {
     this._name.textContent = data.name;
-    this._description.textContent = data.about;
+    // this._description.textContent = data.about;
+    this._description.textContent = data.description;
   }
 
   // добавление ссылки на новую картинку аватара
