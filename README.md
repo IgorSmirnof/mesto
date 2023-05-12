@@ -1,5 +1,5 @@
 # Проект: Mesto Russia
-![](https://github.com/igorsmirnof/mesto/raw/main/src/images/mesto.jpg)
+![](https://github.com/igorsmirnof/mesto/raw/react/src/images/mesto.jpg)
 
 ### Обзор
 * Описание
@@ -7,7 +7,9 @@
 * GitHub Pages
 
 **Описание**
-* Проект Mesto Russia от ЯП [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1), в котором студенту предстоит поработать с великим и могучим JS. Функциональность сего проекта обеспечивают следующие продукты: HTML, CSS, JS. 
+* Проект Mesto Russia от ЯП 
+* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1), в котором студенту предстоит поработать с великим и могучим JS. 
+* Функциональность сего проекта обеспечивают следующие продукты: HTML, CSS, JS. 
 
 **Технологии**
 * Файловая структура по БЭМ (Nested), исключая JS
