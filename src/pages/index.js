@@ -94,7 +94,6 @@ const popupFormDelete = new PopupSubmit(".popup_delete", {
 const userInfoPopup = new PopupWithForm(".popup_profile", {
   handlFormSubmit: (data) => {
     // newCardPopup.renderPreloader(true, "Сохранение ...");
-    // console.log(data)
     return api
       .setUserInfoApi(data)    
       .then(() => userInfo.setUserInfo(data))   // *  <--------------<< 
